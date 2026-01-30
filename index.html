@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4a00e0">
+    
     <title>RotinaHero - Vença a Procrastinação</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            /* DEGRADÊ ROXO HEROICO */
+            background: linear-gradient(135deg, #2b1055 0%, #7597de 100%); 
+            /* Alternativa mais "dark": background: linear-gradient(135deg, #120c1f 0%, #4b1c71 100%); */
+            background-attachment: fixed; /* O fundo não mexe ao rolar */
             color: white;
             text-align: center;
             padding: 50px 20px;
@@ -20,40 +25,62 @@
         }
         .container {
             max-width: 600px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3); /* Fundo mais escuro para ler melhor */
             padding: 40px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        h1 { 
+            font-size: 2.5rem; 
+            margin-bottom: 10px; 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
         p { font-size: 1.2rem; line-height: 1.6; color: #e0e0e0; }
+        
         .btn {
             display: inline-block;
-            background-color: #ff9900;
+            /* BOTÃO DOURADO PARA CONTRASTE */
+            background: linear-gradient(to right, #FFC837, #FF8008);
             color: #000;
-            font-weight: bold;
-            padding: 15px 30px;
-            margin-top: 20px;
+            font-weight: 800; /* Mais grosso */
+            padding: 18px 40px;
+            margin-top: 25px;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1.1rem;
-            transition: transform 0.2s;
+            font-size: 1.2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 128, 8, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .btn:hover { transform: scale(1.05); background-color: #ffad33; }
+        .btn:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 6px 20px rgba(255, 128, 8, 0.6);
+        }
+        
         .footer { margin-top: 40px; font-size: 0.8rem; opacity: 0.6; }
+        
+        /* Ícone do App (simulado com emoji por enquanto) */
+        .app-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>🦸‍♂️ RotinaHero</h1>
-        <p>O aplicativo que usa Inteligência Artificial para organizar seu dia e transformar tarefas em conquistas.</p>
+        <span class="app-icon">🦸‍♂️</span>
+        <h1>RotinaHero</h1>
+        <p>O app que usa <strong>Inteligência Artificial</strong> para organizar seu dia e transformar tarefas chatas em conquistas épicas.</p>
         
-        <p><em>Ideal para quem precisa de foco e estrutura.</em></p>
+        <p style="font-size: 0.9rem; margin-top: 20px;"><em>"A gamificação que faltava para o seu TDAH."</em></p>
 
         <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai" class="btn">
-            📲 Baixar Agora no Android
+            Baixar Agora 🚀
         </a>
     </div>
 

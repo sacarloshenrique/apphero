@@ -9,86 +9,238 @@
     
     <title>RotinaHero - Vença a Procrastinação</title>
     <style>
+        /* RESET BÁSICO */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* DEGRADÊ ROXO HEROICO */
             background: linear-gradient(135deg, #2b1055 0%, #7597de 100%); 
-            /* Alternativa mais "dark": background: linear-gradient(135deg, #120c1f 0%, #4b1c71 100%); */
-            background-attachment: fixed; /* O fundo não mexe ao rolar */
+            background-attachment: fixed;
             color: white;
-            text-align: center;
-            padding: 50px 20px;
-            margin: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
-        .container {
-            max-width: 600px;
-            background: rgba(0, 0, 0, 0.3); /* Fundo mais escuro para ler melhor */
-            padding: 40px;
+
+        /* CONTAINER PRINCIPAL DIVIDIDO (FLEXBOX) */
+        .split-container {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden; /* Pra manter o border-radius com o fundo das colunas */
         }
-        h1 { 
-            font-size: 2.5rem; 
-            margin-bottom: 10px; 
+
+        /* COLUNA ESQUERDA - MARKETING E ANDROID */
+        .left-panel {
+            flex: 1;
+            padding: 50px 40px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .left-panel h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
-        p { font-size: 1.2rem; line-height: 1.6; color: #e0e0e0; }
-        
-        .btn {
-            display: inline-block;
-            /* BOTÃO DOURADO PARA CONTRASTE */
-            background: linear-gradient(to right, #FFC837, #FF8008);
-            color: #000;
-            font-weight: 800; /* Mais grosso */
-            padding: 18px 40px;
-            margin-top: 25px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 15px rgba(255, 128, 8, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+
+        .left-panel p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #e0e0e0;
+            margin-bottom: 25px;
         }
-        .btn:hover { 
-            transform: scale(1.05); 
-            box-shadow: 0 6px 20px rgba(255, 128, 8, 0.6);
-        }
-        
-        .footer { margin-top: 40px; font-size: 0.8rem; opacity: 0.6; }
-        
-        /* Ícone do App (simulado com emoji por enquanto) */
+
         .app-icon {
             font-size: 4rem;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             display: block;
+        }
+
+        /* COLUNA DIREITA - LOGIN (Fundo mais escuro) */
+        .right-panel {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-panel h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* FORMULÁRIO DE LOGIN */
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .input-group input::placeholder {
+            color: #ccc;
+        }
+
+        .input-group input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid #7597de;
+        }
+
+        /* BOTÕES */
+        .btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+        }
+
+        .btn-android {
+            background: linear-gradient(to right, #FFC837, #FF8008);
+            color: #000;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 128, 8, 0.4);
+        }
+
+        .btn-login {
+            background: #4C1D95; /* Roxo do app */
+            color: white;
+            margin-top: 10px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            color: #ccc;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .divider:not(:empty)::before { margin-right: .25em; }
+        .divider:not(:empty)::after { margin-left: .25em; }
+
+        .btn-google {
+            background: white;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-google img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* RESPONSIVIDADE (CELULAR EMPILHA AS COLUNAS) */
+        @media (max-width: 768px) {
+            .split-container {
+                flex-direction: column;
+            }
+            .left-panel, .right-panel {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <span class="app-icon">🦸‍♂️</span>
-        <h1>RotinaHero</h1>
-        <p>O app que usa <strong>Inteligência Artificial</strong> para organizar seu dia e transformar tarefas chatas em conquistas épicas.</p>
+    <div class="split-container">
         
-        <p style="font-size: 0.9rem; margin-top: 20px;"><em>"A gamificação que faltava para o seu TDAH."</em></p>
+        <div class="left-panel">
+            <span class="app-icon">🦸‍♂️</span>
+            <h1>RotinaHero</h1>
+            <p>O app que usa <strong>Inteligência Artificial</strong> para organizar seu dia e transformar tarefas chatas em conquistas épicas.</p>
+            
+            <p style="font-size: 0.9rem; margin-bottom: 25px;"><em>"A gamificação que faltava para o seu TDAH."</em></p>
 
-        <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai" class="btn">
-            Baixar Agora 🚀
-        </a>
+            <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai" class="btn btn-android">
+                Baixar para Android 🚀
+            </a>
+            <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.8;">Instale o app nativo para mais desempenho e notificações.</p>
+        </div>
+
+        <div class="right-panel">
+            <h2>Acesse sua conta</h2>
+            
+            <form onsubmit="event.preventDefault(); redirecionarProApp();">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Seu e-mail" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="senha" placeholder="Sua senha" required>
+                </div>
+                
+                <button type="submit" class="btn btn-login">Entrar</button>
+            </form>
+
+            <div class="divider">ou</div>
+
+            <button onclick="redirecionarProApp()" class="btn btn-google">
+                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
+                Entrar com Google
+            </button>
+        </div>
+
     </div>
 
     <div class="footer">
         &copy; 2026 AppHero. Todos os direitos reservados.
     </div>
 
+    <script>
+        // Lógica bruta de redirecionamento. 
+        // Como o Firebase Auth tá configurado no PWA (rotina.apphero.com.br), 
+        // o ideal é jogar o cara pra lá quando ele clicar aqui.
+        function redirecionarProApp() {
+            window.location.href = "https://rotina.apphero.com.br";
+        }
+    </script>
+
 </body>
-</html> 
+</html>

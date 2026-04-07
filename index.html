@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5577107950094628" crossorigin="anonymous"></script>
-    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5577107950094628"
+        crossorigin="anonymous"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
-    
+
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#4C1D95">
     <title>RotinaHero - Rotina Gamificada para TDAH e Produtividade</title>
-    
+
     <style>
         /* RESET & VARIÁVEIS */
         :root {
@@ -24,96 +26,523 @@
             --bg-claro: #f8f9fa;
             --texto: #333;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
-        body { background-color: var(--bg-claro); color: var(--texto); line-height: 1.6; }
-        a { text-decoration: none; color: inherit; }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-claro);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
         /* CONTAINER */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* SEÇÃO DE CONTEÚDO SEO (TDAH) */
+        .seo-content {
+            padding: 80px 0;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .seo-content h2 {
+            font-size: 2.2rem;
+            color: var(--roxo-escuro);
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .seo-content h3 {
+            font-size: 1.4rem;
+            color: var(--roxo-hero);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .seo-content p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #555;
+            line-height: 1.8;
+            text-align: justify;
+        }
 
         /* NAVBAR */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--roxo-hero); display: flex; align-items: center; gap: 8px; }
-        .nav-links { display: flex; gap: 30px; font-weight: 500; }
-        .nav-links a:hover { color: var(--roxo-hero); }
-        .nav-actions { display: flex; align-items: center; gap: 20px; }
-        
-        .btn { padding: 12px 24px; border-radius: 50px; font-weight: 700; cursor: pointer; border: none; transition: 0.2s; text-align: center; }
-        .btn-outline { background: transparent; color: var(--roxo-hero); }
-        .btn-outline:hover { background: var(--roxo-claro); }
-        .btn-primary { background: var(--roxo-hero); color: white; box-shadow: 0 4px 15px rgba(76, 29, 149, 0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76, 29, 149, 0.4); }
-        .btn-gold { background: linear-gradient(to right, #FFC837, #FF8008); color: black; box-shadow: 0 4px 15px rgba(255, 128, 8, 0.3); }
-        .btn-gold:hover { transform: translateY(-2px); }
-        .btn-disabled { background: #e0e0e0; color: #999; cursor: not-allowed; box-shadow: none; }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--roxo-hero);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--roxo-hero);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: 0.2s;
+            text-align: center;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--roxo-hero);
+        }
+
+        .btn-outline:hover {
+            background: var(--roxo-claro);
+        }
+
+        .btn-primary {
+            background: var(--roxo-hero);
+            color: white;
+            box-shadow: 0 4px 15px rgba(76, 29, 149, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 29, 149, 0.4);
+        }
+
+        .btn-gold {
+            background: linear-gradient(to right, #FFC837, #FF8008);
+            color: black;
+            box-shadow: 0 4px 15px rgba(255, 128, 8, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-disabled {
+            background: #e0e0e0;
+            color: #999;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
 
         /* HERO */
-        .hero { display: flex; align-items: center; justify-content: space-between; padding: 80px 0; gap: 40px; }
-        .hero-text { flex: 1; }
-        .hero-tag { background: var(--dourado); color: black; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; display: inline-block; margin-bottom: 20px; text-transform: uppercase; }
-        .hero-title { font-size: 4rem; line-height: 1.1; color: var(--roxo-escuro); margin-bottom: 20px; font-weight: 800; }
-        .hero-title span { color: var(--dourado); font-style: italic; }
-        .hero-desc { font-size: 1.2rem; color: #666; margin-bottom: 30px; }
-        .hero-img { flex: 1; display: flex; justify-content: center; }
-        .hero-card { background: var(--roxo-hero); width: 350px; height: 350px; border-radius: 30px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 8rem; color: white; }
-        .hero-badge { position: absolute; bottom: -20px; right: -20px; background: white; padding: 15px 25px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--roxo-hero); font-size: 1rem; }
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 0;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-tag {
+            background: var(--dourado);
+            color: black;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            line-height: 1.1;
+            color: var(--roxo-escuro);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero-title span {
+            color: var(--dourado);
+            font-style: italic;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .hero-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-card {
+            background: var(--roxo-hero);
+            width: 350px;
+            height: 350px;
+            border-radius: 30px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+        }
+
+        .hero-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--roxo-hero);
+            font-size: 1rem;
+        }
 
         /* FEATURES */
-        .features, .pricing { padding: 80px 0; text-align: center; }
-        .features h2, .pricing h2 { font-size: 2.5rem; color: var(--roxo-escuro); margin-bottom: 10px; font-weight: 800; }
-        .subtitle { color: #666; margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        
-        .grid-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: left; }
-        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .card-roxo { background: var(--roxo-hero); color: white; }
-        .card-dourado { background: var(--dourado); color: black; }
-        .card i { font-size: 2.5rem; margin-bottom: 20px; display: block; }
-        .card h3 { margin-bottom: 15px; font-size: 1.5rem; font-weight: 700; }
+        .features,
+        .pricing {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .features h2,
+        .pricing h2 {
+            font-size: 2.5rem;
+            color: var(--roxo-escuro);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .grid-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-roxo {
+            background: var(--roxo-hero);
+            color: white;
+        }
+
+        .card-dourado {
+            background: var(--dourado);
+            color: black;
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
 
         /* PRICING TABLE */
-        .grid-pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 900px; margin: 0 auto; text-align: left; }
-        .price-card { background: white; padding: 40px; border-radius: 20px; border: 2px solid #eee; position: relative; }
-        .price-card.premium { border-color: var(--roxo-hero); box-shadow: 0 15px 40px rgba(76, 29, 149, 0.1); transform: scale(1.02); }
-        .price-tag { background: var(--roxo-hero); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; position: absolute; top: -15px; right: 20px; }
-        .price-card h3 { font-size: 1.8rem; color: var(--roxo-escuro); }
-        .price { font-size: 3rem; font-weight: 800; margin: 15px 0; color: var(--texto); }
-        .price span { font-size: 1rem; color: #666; font-weight: 400; }
-        .features-list { list-style: none; margin: 30px 0; }
-        .features-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; color: #555; }
-        .features-list i { color: #10B981; font-weight: bold; }
+        .grid-pricing {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .price-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #eee;
+            position: relative;
+        }
+
+        .price-card.premium {
+            border-color: var(--roxo-hero);
+            box-shadow: 0 15px 40px rgba(76, 29, 149, 0.1);
+            transform: scale(1.02);
+        }
+
+        .price-tag {
+            background: var(--roxo-hero);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            position: absolute;
+            top: -15px;
+            right: 20px;
+        }
+
+        .price-card h3 {
+            font-size: 1.8rem;
+            color: var(--roxo-escuro);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 15px 0;
+            color: var(--texto);
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .features-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #555;
+        }
+
+        .features-list i {
+            color: #10B981;
+            font-weight: bold;
+        }
 
         /* CTA BOTTOM */
-        .cta-bottom { background: var(--roxo-escuro); color: white; border-radius: 30px; padding: 60px; text-align: center; margin: 80px 0; }
-        .cta-bottom h2 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 800; }
-        .cta-bottom p { font-size: 1.2rem; opacity: 0.8; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cta-bottom {
+            background: var(--roxo-escuro);
+            color: white;
+            border-radius: 30px;
+            padding: 60px;
+            text-align: center;
+            margin: 80px 0;
+        }
+
+        .cta-bottom h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .cta-bottom p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
         /* FOOTER */
-        footer { border-top: 1px solid #ddd; padding: 20px 0; display: flex; justify-content: space-between; font-size: 0.9rem; color: #666; margin-bottom: 20px; }
-        .footer-links { display: flex; gap: 20px; }
+        footer {
+            border-top: 1px solid #ddd;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
 
         /* MODAL DE LOGIN */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 1000; align-items: center; justify-content: center; }
-        .modal-content { background: white; padding: 40px; border-radius: 20px; width: 100%; max-width: 400px; position: relative; text-align: center; }
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #999; }
-        .modal-content h2 { color: var(--roxo-escuro); margin-bottom: 25px; font-weight: 800; }
-        .input-group { margin-bottom: 15px; }
-        .input-group input { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #ddd; font-size: 1rem; outline: none; }
-        .input-group input:focus { border-color: var(--roxo-hero); }
-        .btn-google { background: white; color: #333; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; width: 100%; }
-        .btn-google img { width: 20px; height: 20px; }
-        .divider { display: flex; align-items: center; text-align: center; margin: 20px 0; color: #999; font-size: 0.9rem; }
-        .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #eee; }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            text-align: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal-content h2 {
+            color: var(--roxo-escuro);
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: var(--roxo-hero);
+        }
+
+        .btn-google {
+            background: white;
+            color: #333;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .btn-google img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #eee;
+        }
 
         @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; padding: 40px 0; }
-            .hero-title { font-size: 2.5rem; }
-            .nav-links { display: none; }
-            .hero-card { width: 280px; height: 280px; }
-            .price-card.premium { transform: scale(1); }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-card {
+                width: 280px;
+                height: 280px;
+            }
+
+            .price-card.premium {
+                transform: scale(1);
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -125,7 +554,8 @@
             </div>
             <div class="nav-actions">
                 <button onclick="abrirModal()" class="btn btn-outline">Entrar</button>
-                <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai" class="btn btn-primary">Baixar App</a>
+                <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
+                    class="btn btn-primary">Baixar App</a>
             </div>
         </nav>
 
@@ -133,8 +563,11 @@
             <div class="hero-text">
                 <span class="hero-tag">RPG DA VIDA REAL</span>
                 <h1 class="hero-title">RotinaHero:<br><span>Rotina Gamificada</span></h1>
-                <p class="hero-desc">Sua jornada épica começa agora. Transforme tarefas chatas em missões, ganhe XP, suba de nível e evolua seu avatar com o poder da Inteligência Artificial focada em TDAH e procrastinação.</p>
-                <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai" class="btn btn-primary">Missão Cumprida! (Baixar)</a>
+                <p class="hero-desc">Sua jornada épica começa agora. Transforme tarefas chatas em missões, ganhe XP,
+                    suba de nível e evolua seu avatar com o poder da Inteligência Artificial focada em TDAH e
+                    procrastinação.</p>
+                <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
+                    class="btn btn-primary">Missão Cumprida! (Baixar)</a>
             </div>
             <div class="hero-img">
                 <div class="hero-card">
@@ -148,36 +581,68 @@
 
         <section id="features" class="features">
             <h2>Poderes de Gamificação</h2>
-            <p class="subtitle">Esqueça listas de tarefas chatas. Transformamos sua produtividade diária em uma aventura de RPG emocionante, recompensando seu esforço onde mais importa.</p>
-            
+            <p class="subtitle">Esqueça listas de tarefas chatas. Transformamos sua produtividade diária em uma aventura
+                de RPG emocionante, recompensando seu esforço onde mais importa.</p>
+
             <div class="grid-features">
                 <div class="card">
                     <i class="ph-fill ph-user-circle-plus" style="color: var(--roxo-hero);"></i>
                     <h3>Evolução de Avatar</h3>
-                    <p>Customize seu herói e veja-o crescer conforme você completa suas rotinas reais. Seu progresso no mundo físico reflete diretamente no digital.</p>
+                    <p>Customize seu herói e veja-o crescer conforme você completa suas rotinas reais. Seu progresso no
+                        mundo físico reflete diretamente no digital.</p>
                 </div>
                 <div class="card card-roxo">
                     <i class="ph-fill ph-fire" style="color: var(--dourado);"></i>
                     <h3>Streaks Épicas</h3>
-                    <p>Não quebre o ciclo! Ganhe bônus massivos de XP ao manter sua sequência de hábitos saudáveis, leitura e trabalho por vários dias seguidos.</p>
+                    <p>Não quebre o ciclo! Ganhe bônus massivos de XP ao manter sua sequência de hábitos saudáveis,
+                        leitura e trabalho por vários dias seguidos.</p>
                 </div>
                 <div class="card card-dourado">
                     <i class="ph-fill ph-users-three"></i>
                     <h3>Guildas e Raids</h3>
-                    <p>Junte-se a amigos em guildas para completar desafios em grupo e derrotar a procrastinação juntos. A responsabilidade compartilhada funciona.</p>
+                    <p>Junte-se a amigos em guildas para completar desafios em grupo e derrotar a procrastinação juntos.
+                        A responsabilidade compartilhada funciona.</p>
                 </div>
                 <div class="card">
                     <i class="ph-fill ph-trophy" style="color: var(--roxo-hero);"></i>
                     <h3>Rankings Globais</h3>
-                    <p>Compare sua disciplina com heróis do mundo todo e suba nas ligas. O algoritmo de Inteligência Artificial garante uma competição justa.</p>
+                    <p>Compare sua disciplina com heróis do mundo todo e suba nas ligas. O algoritmo de Inteligência
+                        Artificial garante uma competição justa.</p>
                 </div>
             </div>
         </section>
+        <section class="seo-content">
+            <h2>A Ciência por trás do RotinaHero: TDAH e Gamificação</h2>
 
+            <p>A procrastinação e a dificuldade de manter o foco não são apenas falhas de força de vontade, mas
+                frequentemente estão ligadas à forma como o cérebro processa a dopamina. Para pessoas com Transtorno do
+                Déficit de Atenção com Hiperatividade (TDAH), a execução de tarefas cotidianas pode parecer uma barreira
+                intransponível devido à disfunção executiva.</p>
+
+            <h3>Por que o cérebro com TDAH trava?</h3>
+            <p>O cérebro neurodivergente busca constantemente estímulos de alta recompensa e curto prazo. Tarefas como
+                estudar, arrumar a casa ou preencher relatórios não oferecem esse pico imediato de dopamina, fazendo com
+                que o indivíduo busque distrações mais estimulantes. É aqui que os métodos tradicionais de
+                produtividade, como agendas de papel e planners estáticos, costumam falhar miseravelmente.</p>
+
+            <h3>A Solução através do RPG da Vida Real</h3>
+            <p>A gamificação transforma obrigações monótonas em um sistema de recompensas visuais e imediatas. Ao
+                utilizar a estrutura do RotinaHero, cada tarefa do mundo físico é convertida em <strong>Pontos de
+                    Experiência (XP)</strong> no mundo digital. Esse ciclo de feedback instantâneo "hackeia" o sistema
+                de recompensa do cérebro, liberando dopamina a cada <i>checkbox</i> marcado.</p>
+
+            <h3>Sistemas de Streaks e Responsabilidade</h3>
+            <p>Além da recompensa imediata, o uso de <i>Streaks</i> (ofensivas de dias consecutivos) cria um gatilho de
+                aversão à perda. O usuário sente a urgência de completar a rotina para não perder o combo acumulado.
+                Quando adicionamos recursos sociais, como as guildas e a Liga da Família, aplicamos o conceito
+                psicológico de responsabilidade compartilhada (<i>body doubling</i> adaptado), reduzindo a fricção para
+                iniciar tarefas complexas.</p>
+        </section>
         <section id="planos" class="pricing">
             <h2>Escolha seu Caminho</h2>
-            <p class="subtitle">Comece sua jornada hoje ou prepare-se para desbloquear o poder total da IA na sua rotina.</p>
-            
+            <p class="subtitle">Comece sua jornada hoje ou prepare-se para desbloquear o poder total da IA na sua
+                rotina.</p>
+
             <div class="grid-pricing">
                 <div class="price-card">
                     <h3>Novato</h3>
@@ -209,7 +674,8 @@
         <section class="cta-bottom">
             <h2>Sua jornada épica começa agora.</h2>
             <p>Junte-se a milhares de heróis que decidiram gamificar suas vidas e vencer o boss da procrastinação.</p>
-            <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai" class="btn btn-gold" style="font-size: 1.2rem; padding: 15px 40px;">Começar agora - Grátis</a>
+            <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai" class="btn btn-gold"
+                style="font-size: 1.2rem; padding: 15px 40px;">Começar agora - Grátis</a>
         </section>
 
         <footer>
@@ -226,7 +692,7 @@
         <div class="modal-content">
             <span class="close-btn" onclick="fecharModal()">&times;</span>
             <h2>Acesse seu Herói</h2>
-            
+
             <form onsubmit="event.preventDefault(); redirecionarProApp();">
                 <div class="input-group">
                     <input type="email" id="email" placeholder="Seu e-mail" required>
@@ -248,8 +714,9 @@
         const modal = document.getElementById('loginModal');
         function abrirModal() { modal.style.display = 'flex'; }
         function fecharModal() { modal.style.display = 'none'; }
-        window.onclick = function(event) { if (event.target == modal) { fecharModal(); } }
+        window.onclick = function (event) { if (event.target == modal) { fecharModal(); } }
         function redirecionarProApp() { window.location.href = "https://rotina.apphero.com.br"; }
     </script>
 </body>
+
 </html>

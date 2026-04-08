@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5577107950094628"
+        crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4C1D95">
+    <title>Blog - RotinaHero</title>
+
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .blog-hero {
+            text-align: center;
+            padding: 60px 0 20px 0;
+            color: var(--roxo-escuro);
+        }
+        .blog-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .blog-hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .blog-card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .blog-card-link:hover .card {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ler-mais {
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo"><i class="ph-fill ph-lightning" style="color: var(--dourado);"></i> RotinaHero</div>
+            <div class="nav-links">
+                <a href="/#features">Benefícios</a>
+                <a href="/blog.html" style="color: var(--roxo-hero);">Blog</a>
+                <a href="/#planos">Planos</a>
+            </div>
+            <div class="nav-actions">
+                <button onclick="abrirModal()" class="btn btn-outline">Entrar</button>
+                <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
+                    class="btn btn-primary">Baixar App</a>
+            </div>
+        </nav>
+
+        <section class="blog-hero">
+            <h1>Blog do Herói</h1>
+            <p>Dicas de produtividade, gamificação e neurodiversidade.</p>
+        </section>
+
+        <section class="features" style="padding-top: 0;">
+            <div class="grid-features">
+                <a href="artigo-exemplo.html" class="blog-card-link">
+                    <div class="card">
+                        <i class="ph-fill ph-brain" style="color: var(--roxo-hero);"></i>
+                        <h3>Como o TDAH afeta a percepção de tempo</h3>
+                        <p>Descubra por que a "cegueira do tempo" acontece e como o modelo gamificado do RotinaHero pode ajudar a estruturar o seu dia.</p>
+                        <span class="ler-mais" style="color: var(--roxo-hero);">Ler artigo &rarr;</span>
+                    </div>
+                </a>
+
+                <a href="artigo-exemplo.html" class="blog-card-link">
+                    <div class="card card-roxo">
+                        <i class="ph-fill ph-fire" style="color: var(--dourado);"></i>
+                        <h3>5 dicas para configurar sua primeira Streak no RotinaHero</h3>
+                        <p>Aprenda o passo a passo para criar correntes de hábitos que você não vai querer quebrar, aproveitando a ciência da dopamina.</p>
+                        <span class="ler-mais" style="color: var(--dourado);">Ler artigo &rarr;</span>
+                    </div>
+                </a>
+
+                <a href="artigo-exemplo.html" class="blog-card-link">
+                    <div class="card card-dourado">
+                        <i class="ph-fill ph-users-three"></i>
+                        <h3>A importância das Guildas na produtividade compartilhada</h3>
+                        <p>A responsabilidade social (Body Doubling) minimiza a fricção de inciar as tarefas. Veja como as Guildas tornam isso possível.</p>
+                        <span class="ler-mais" style="color: var(--roxo-escuro);">Ler artigo &rarr;</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <div>&copy; 2026 AppHero. Vencendo a procrastinação.</div>
+            <div class="footer-links">
+                <a href="/sobre.html">Sobre</a>
+                <a href="/metodologia.html">Metodologia</a>
+                <a href="/privacidade.html">Privacidade</a>
+                <a href="/termos.html">Termos</a>
+                <a href="mailto:suporte@apphero.com.br">Suporte</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal Padrão -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal()">&times;</span>
+            <h2>Acesse seu Herói</h2>
+
+            <form onsubmit="event.preventDefault(); redirecionarProApp();">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Seu e-mail" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="senha" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
+            </form>
+            <div class="divider">ou continue com</div>
+            <button onclick="redirecionarProApp()" class="btn btn-google">
+                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
+                Entrar com Google
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>

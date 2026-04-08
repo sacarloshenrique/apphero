@@ -1,0 +1,38 @@
+name: Blog Bot - Gerador de Artigos
+
+on:
+  schedule:
+    # Roda todas as segundas e quintas-feiras às 00:00
+    - cron: '0 0 * * 1,4'
+  workflow_dispatch:
+
+jobs:
+  generate_post:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: Setup do Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar Dependências
+        run: npm install @google/generative-ai
+
+      - name: Executar Script Gerador
+        run: node scripts/gerar-post.js
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Criar Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "docs: adicionar um novo artigo gerado por IA no blog"
+          title: "🤖 Novo Artigo Gerado pelo Bot"
+          body: |
+            Este Pull Request contém um novo artigo automatizado, gerado pelo script do Gemini AI.
+            Obrigado pelo seu excelente conteúdo de hoje!
+          branch: "bot-artigo-${{ github.run_number }}"

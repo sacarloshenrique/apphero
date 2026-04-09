@@ -132,18 +132,22 @@
                         return;
                     }
 
-                    // Renderiza os cards bonitões usando as tuas classes originais
-                    grid.innerHTML = artigos.map(artigo => {
-                        // Formata a data (se existir)
+                    // Array com as tuas classes originais para rotacionar as cores
+                    const estilosCard = ['', 'card-roxo', 'card-dourado'];
+
+                    grid.innerHTML = artigos.map((artigo, index) => {
                         const dataFormatada = artigo.data ? new Date(artigo.data).toLocaleDateString('pt-BR') : 'Recentemente';
+
+                        // Pega a classe da cor baseado no índice (0, 1, 2, 0, 1, 2...)
+                        const classeCor = estilosCard[index % 3];
 
                         return `
                         <a href="${artigo.link}" class="blog-card-link">
-                            <div class="card">
-                                <i class="ph-fill ph-book-open" style="color: var(--roxo-hero);"></i>
-                                <h3>${artigo.titulo}</h3>
-                                <p style="font-size: 0.9em; color: #888; margin-bottom: 10px;">Publicado em ${dataFormatada}</p>
-                                <span class="ler-mais" style="color: var(--roxo-hero);">Ler artigo &rarr;</span>
+                            <div class="card ${classeCor}">
+                                <i class="ph-fill ph-book-open" style="font-size: 2rem; margin-bottom: 15px; color: inherit;"></i>
+                                <h3 style="margin-bottom: 10px;">${artigo.titulo}</h3>
+                                <p style="font-size: 0.9em; opacity: 0.8; margin-bottom: 15px;">Publicado em ${dataFormatada}</p>
+                                <span class="ler-mais">Ler artigo &rarr;</span>
                             </div>
                         </a>
                         `;

@@ -12,6 +12,7 @@ if (!apiKey) {
 
 const genAI = new GoogleGenerativeAI(apiKey);
 
+
 // --- TEMPLATE MESTRE ---
 function generateFullHtml(content, title) {
     return `<!DOCTYPE html>
@@ -30,27 +31,28 @@ function generateFullHtml(content, title) {
 </head>
 <body>
     <div class="container">
-        <nav style="padding: 20px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee;">
-            <div class="logo" style="color: #4C1D95; font-weight: 800; font-size: 1.5rem; text-decoration: none;">
-                <i class="ph-fill ph-lightning" style="color: var(--dourado);"></i> RotinaHero
+        <nav>
+            <div class="logo"><i class="ph-fill ph-lightning" style="color: var(--dourado);"></i> RotinaHero</div>
+            <div class="nav-links">
+                <a href="/index.html#features">Benefícios</a>
+                <a href="/blog.html" style="color: var(--roxo-hero);">Blog</a>
+                <a href="/index.html#planos">Planos</a>
             </div>
-            <div class="nav-links" style="display: flex; gap: 20px;">
-                <a href="/index.html" style="text-decoration: none; color: #666;">Home</a>
-                <a href="/blog.html" style="text-decoration: none; color: #4C1D95; font-weight: bold;">Blog</a>
-                <a href="/index.html#planos" style="text-decoration: none; color: #666;">Planos</a>
+            <div class="nav-actions">
+                <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai" class="btn btn-primary">Baixar App</a>
             </div>
         </nav>
 
-        <article class="article-detail" style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+        <section class="seo-content" style="margin-top: 40px; margin-bottom: 40px;">
             ${content}
-        </article>
+        </section>
         
-        <footer style="margin-top: 60px; padding: 40px 0; border-top: 1px solid #eee; display: flex; justify-content: space-between; font-size: 0.9rem; color: #666;">
+        <footer>
             <div>&copy; 2026 AppHero. Vencendo a procrastinação.</div>
-            <div class="footer-links" style="display: flex; gap: 15px;">
-                <a href="/index.html" style="text-decoration: none; color: #666;">Home</a>
-                <a href="/sobre.html" style="text-decoration: none; color: #666;">Sobre</a>
-                <a href="mailto:suporte@apphero.com.br" style="text-decoration: none; color: #666;">Suporte</a>
+            <div class="footer-links">
+                <a href="/index.html">Home</a>
+                <a href="/sobre.html">Sobre</a>
+                <a href="mailto:suporte@apphero.com.br">Suporte</a>
             </div>
         </footer>
     </div>

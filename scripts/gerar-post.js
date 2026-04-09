@@ -2,7 +2,6 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const fs = require('fs');
 const path = require('path');
 
-// Inicializa a IA com a chave de API do ambiente
 const apiKey = process.env.GEMINI_API_KEY;
 
 if (!apiKey) {
@@ -16,79 +15,70 @@ async function gerarPost() {
     console.log("Iniciando a geração do artigo de blog...");
 
     try {
-        // Utiliza o modelo especificado
         const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
-        const prompt = "Gere um artigo de blog com 600 palavras sobre produtividade, TDAH e gamificação. O retorno deve ser SOMENTE um JSON válido contendo 3 campos: 'titulo' (título curto do artigo), 'resumo' (2 linhas de resumo) e 'html_artigo' (o artigo SOMENTE em código HTML válido, utilizando tags <h2>, <h3>, <p> e listas. Não inclua tags <html>, <head> ou <body>). NUNCA envolva a resposta em blocos de código Markdown (como ```json), retorne apenas o texto JSON limpo.";
+        // Prompt ajustado para retornar JSON com Título, Resumo e o HTML
+        const prompt = `Gere um artigo de blog com 600 palavras sobre produtividade, TDAH e gamificação no ecossistema de apps.
+        Retorne o resultado EXATAMENTE neste formato JSON puro (sem marcação markdown como \`\`\`json):
+        {
+            "titulo": "Título curto e chamativo aqui",
+            "resumo": "Um resumo de duas linhas sobre o artigo.",
+            "conteudo": "AQUI VAI SOMENTE O CÓDIGO HTML DO ARTIGO (com tags <h2>, <h3>, <p>, <ul>, <li>). Sem <html>, <head> ou <body>."
+        }`;
 
         console.log("Enviando prompt para o modelo...");
-
-        // Gera o conteúdo via API
         const result = await model.generateContent(prompt);
-        const text = result.response.text();
+        let text = result.response.text();
 
-        let conteudo;
-        try {
-            conteudo = JSON.parse(text);
-        } catch (e) {
-            // Tenta limpar marcações Markdown residuais, caso ocorram
-            const cleanedText = text.replace(/```json\n?|```/g, '').trim();
-            conteudo = JSON.parse(cleanedText);
-        }
+        // Tratamento maroto pra limpar formatação markdown se a IA ignorar a regra
+        text = text.replace(/```json/g, '').replace(/```/g, '').trim();
+        const dados = JSON.parse(text);
 
         console.log("Conteúdo gerado com sucesso! Preparando para salvar...");
 
-        // Gera o nome do arquivo com base no timestamp (em segundos)
         const timestamp = Math.floor(Date.now() / 1000);
         const fileName = `artigo-${timestamp}.html`;
 
-        // Define os caminhos dos diretórios
         const rootDir = path.join(__dirname, '..');
         const blogDir = path.join(rootDir, 'blog');
         const blogHtmlPath = path.join(rootDir, 'blog.html');
 
-        // Garante que o diretório blog/ exista
         if (!fs.existsSync(blogDir)) {
-            console.log("Diretório blog/ não encontrado. Criando diretório na raiz do projeto...");
             fs.mkdirSync(blogDir, { recursive: true });
         }
 
         const filePath = path.join(blogDir, fileName);
 
-        // Salva o arquivo do artigo em disco
-        fs.writeFileSync(filePath, conteudo.html_artigo, 'utf8');
+        // 1. Salva o artigo físico
+        fs.writeFileSync(filePath, dados.conteudo, 'utf8');
+        console.log(`Sucesso! O artigo foi criado em: ${filePath}`);
 
-        console.log(`Sucesso! O artigo foi criado e salvo em: ${filePath}`);
-
-        // Atualiza a página principal do blog
+        // 2. Atualiza a página principal do blog
         if (fs.existsSync(blogHtmlPath)) {
-            let blogHtml = fs.readFileSync(blogHtmlPath, 'utf8');
-            
+            let blogHtmlContent = fs.readFileSync(blogHtmlPath, 'utf8');
+
+            // Cria o card que vai aparecer na listagem
             const novoCard = `
-                <a href="blog/${fileName}" class="blog-card-link">
-                    <div class="card">
-                        <i class="ph-fill ph-article" style="color: var(--roxo-hero);"></i>
-                        <h3>${conteudo.titulo}</h3>
-                        <p>${conteudo.resumo}</p>
-                        <span class="ler-mais" style="color: var(--roxo-hero);">Ler artigo &rarr;</span>
-                    </div>
-                </a>`;
-            
-            // Assumimos que o card deve entrar logo no começo da grid-features
-            const anchorString = '<div class="grid-features">';
-            if (blogHtml.includes(anchorString)) {
-                blogHtml = blogHtml.replace(anchorString, anchorString + "\n" + novoCard);
-                fs.writeFileSync(blogHtmlPath, blogHtml, 'utf8');
-                console.log("A página blog.html foi atualizada com sucesso com o novo card!");
-            } else {
-                console.error("ERRO: A tag '<div class=\"grid-features\">' não foi encontrada no blog.html. O card não foi renderizado.");
-            }
+            <div class="card">
+                <h3>${dados.titulo}</h3>
+                <p>${dados.resumo}</p>
+                <a href="/blog/${fileName}" style="color: var(--roxo-hero); font-weight: bold; margin-top: 10px; display: inline-block;">Ler artigo completo &rarr;</a>
+            </div>`;
+
+            // Injeta o card logo depois da âncora
+            blogHtmlContent = blogHtmlContent.replace(
+                '',
+                `\n${novoCard}`
+            );
+
+            fs.writeFileSync(blogHtmlPath, blogHtmlContent, 'utf8');
+            console.log("Sucesso Absoluto! Página blog.html foi atualizada com o novo card.");
         } else {
-            console.error("ERRO: O arquivo blog.html não foi encontrado na raiz do projeto.");
+            console.error("Erro: Arquivo blog.html não encontrado na raiz!");
         }
 
     } catch (error) {
-        console.error("Falha na geração ou gravação do artigo de blog. Erro encontrado:", error);
+        console.error("Falha fatal na geração ou gravação do artigo:", error);
     }
 }
 

@@ -13,7 +13,6 @@ if (!apiKey) {
 const genAI = new GoogleGenerativeAI(apiKey);
 
 // --- TEMPLATE MESTRE ---
-// Essa é a "fôrma de bolo" com o estilo do teu site.
 function generateFullHtml(content, title) {
     return `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -66,7 +65,6 @@ async function gerarPost() {
     try {
         const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
-        // Prompt AJUSTADO para receber Título e Conteúdo HTML limpo
         const prompt = `Gere um artigo de blog com 600 palavras sobre produtividade, TDAH e gamificação no ecossistema de apps. 
         Retorne o resultado EXATAMENTE neste formato JSON puro (sem marcação markdown json):
         {
@@ -78,56 +76,48 @@ async function gerarPost() {
         const result = await model.generateContent(prompt);
         let text = result.response.text();
 
-        // Limpeza básica se a IA teimar em colocar markdown json
-        text = text.replace('```json', '').replace('```', '').trim();
+        text = text.replace(/```json/g, '').replace(/```/g, '').trim();
         const responseData = JSON.parse(text);
 
-        console.log("Conteúdo gerado! Envelopando no template mestre...");
+        console.log("Conteúdo gerado! Salvando arquivos...");
 
-        // Gera o nome do arquivo com timestamp
         const timestamp = Math.floor(Date.now() / 1000);
         const fileName = `artigo-${timestamp}.html`;
 
-        // Define os caminhos
         const rootDir = path.join(__dirname, '..');
         const blogDir = path.join(rootDir, 'blog');
-        const blogHtmlPath = path.join(rootDir, 'blog.html');
+        const indexJsonPath = path.join(blogDir, 'index.json');
 
         if (!fs.existsSync(blogDir)) {
             fs.mkdirSync(blogDir, { recursive: true });
         }
 
+        // 1. Salva o HTML físico do artigo
         const filePath = path.join(blogDir, fileName);
-
-        // 1. Envelopa o conteúdo no template completo
         const fullHtml = generateFullHtml(responseData.conteudo_html, responseData.titulo);
-
-        // 2. Salva o arquivo em disco
         fs.writeFileSync(filePath, fullHtml, 'utf8');
-        console.log(`Sucesso! O artigo completo e estilizado foi criado em: ${filePath}`);
+        console.log(`Sucesso! Artigo criado: ${filePath}`);
 
-        // 3. Atualiza a página do blog.html
-        if (fs.existsSync(blogHtmlPath)) {
-            let blogHtmlContent = fs.readFileSync(blogHtmlPath, 'utf8');
-
-            // Cria o HTML do novo card (styled using the same template/style)
-            const novoCardHtml = `
-            <div class="card card-roxo" style="display: block; width: 100%; border-radius: 12px; padding: 25px; margin-bottom: 20px; text-decoration: none;">
-                <h3 style="color: var(--dourado); margin-bottom: 10px; font-weight: bold;">${responseData.titulo}</h3>
-                <a href="/blog/${fileName}" style="color: white; font-weight: bold; text-decoration: none; display: inline-block; margin-top: 10px;">Ler artigo completo &rarr;</a>
-            </div>`;
-
-            // Injeta o card logo depois da âncora
-            blogHtmlContent = blogHtmlContent.replace(
-                '',
-                `\n${novoCardHtml}`
-            );
-
-            fs.writeFileSync(blogHtmlPath, blogHtmlContent, 'utf8');
-            console.log("Sucesso Absoluto! Página blog.html foi atualizada com o novo card.");
-        } else {
-            console.error("Erro Fatal: Arquivo blog.html não encontrado na raiz para atualização!");
+        // 2. Atualiza o banco de dados JSON
+        let indexData = [];
+        if (fs.existsSync(indexJsonPath)) {
+            const fileContent = fs.readFileSync(indexJsonPath, 'utf8');
+            try {
+                indexData = JSON.parse(fileContent);
+            } catch (e) {
+                console.warn("Aviso: index.json estava vazio ou corrompido. Criando um novo.");
+            }
         }
+
+        // Coloca o artigo novo no topo da lista
+        indexData.unshift({
+            titulo: responseData.titulo,
+            link: `/blog/${fileName}`,
+            data: new Date().toISOString()
+        });
+
+        fs.writeFileSync(indexJsonPath, JSON.stringify(indexData, null, 2), 'utf8');
+        console.log("Sucesso Absoluto! index.json atualizado.");
 
     } catch (error) {
         console.error("Falha na geração ou gravação do artigo:", error);

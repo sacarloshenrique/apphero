@@ -3,12 +3,16 @@ name: Blog Bot - Gerador de Artigos
 on:
   schedule:
     # Roda todas as segundas e quintas-feiras às 00:00
-    - cron: '0 0 * * 1,4'
+    - cron: "0 0 * * 1,4"
   workflow_dispatch:
 
 jobs:
   generate_post:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
       - name: Checkout do Código

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5577107950094628"
+        crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4C1D95">
+    <title>Metodologia - RotinaHero</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo"><i class="ph-fill ph-lightning" style="color: var(--dourado);"></i> RotinaHero</div>
+            <div class="nav-links">
+                <a href="/index.html#features">Benefícios</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/index.html#planos">Planos</a>
+            </div>
+            <div class="nav-actions">
+                <button onclick="abrirModal()" class="btn btn-outline">Entrar</button>
+                <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
+                    class="btn btn-primary">Baixar App</a>
+            </div>
+        </nav>
+
+        <section class="seo-content" style="margin-top: 60px; margin-bottom: 60px;">
+            <h1 style="color: var(--roxo-escuro); font-size: 2.5rem; margin-bottom: 20px;">A Metodologia RotinaHero</h1>
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 40px;">Como unimos a ciência comportamental e a
+                tecnologia para hackear a procrastinação e otimizar cérebros neurodivergentes.</p>
+
+            <h2>1. Hackeando o Sistema de Recompensa (Dopamina)</h2>
+            <p>O cérebro com TDAH possui um déficit crônico na regulação de dopamina, o neurotransmissor responsável
+                pela motivação e recompensa. Isso cria a "Disfunção Executiva", onde tarefas rotineiras parecem exigir
+                um esforço hercúleo. A metodologia do <strong>RotinaHero</strong> aplica a mecânica de RPG (Role-Playing
+                Game) para criar ciclos de feedback rápido. Ao invés de uma recompensa distante, o usuário ganha
+                <strong>XP (Pontos de Experiência)</strong> e feedback visual imediato ao concluir tarefas físicas,
+                estimulando artificialmente a liberação de dopamina e facilitando o início da próxima atividade.
+            </p>
+
+            <h2>2. A Ciência das Streaks e Aversão à Perda</h2>
+            <p>Por que é tão difícil manter um hábito? Nosso cérebro foca no esforço presente e ignora o benefício
+                futuro. O RotinaHero utiliza o conceito psicológico de <em>Loss Aversion</em> (Aversão à Perda) através
+                do sistema de <strong>Streaks</strong> (ofensivas). Ao construir um combo de dias consecutivos
+                realizando leitura, exercícios ou trabalho focado, o cérebro passa a valorizar a "sequência" mais do que
+                o esforço da tarefa em si. A dor de perder um multiplicador de XP que demorou dias para ser construído
+                supera a fricção da procrastinação.</p>
+
+            <h2>3. Body Doubling Digital e Guildas</h2>
+            <p>O <em>Body Doubling</em> (duplicação de corpo) é uma técnica comprovada onde a simples presença de outra
+                pessoa realizando uma tarefa aumenta o foco do indivíduo com TDAH. Adaptamos isso para o mundo digital
+                através do nosso sistema de <strong>Guildas e Ligas</strong>. A responsabilidade compartilhada cria um
+                gatilho de urgência positivo. Saber que a evolução do seu Avatar contribui para o sucesso da guilda, ou
+                que a sua família está acompanhando seu progresso nas missões diárias, reduz drasticamente o abandono de
+                rotinas.</p>
+
+            <h2>4. Inteligência Artificial como Facilitadora</h2>
+            <p>O maior inimigo da organização para quem tem TDAH é a inflexibilidade dos planners tradicionais. Se o dia
+                foge do controle, o sistema tradicional quebra. O RotinaHero integra algoritmos avançados para permitir
+                reagendamentos inteligentes e adaptativos, garantindo que um deslize não signifique o fim da sua jornada
+                heroica, mas apenas um obstáculo contornável.</p>
+        </section>
+
+        <footer>
+            <div>&copy; 2026 AppHero. Vencendo a procrastinação.</div>
+            <div class="footer-links">
+                <a href="/sobre.html">Sobre</a>
+                <a href="/metodologia.html" style="color: var(--roxo-hero);">Metodologia</a>
+                <a href="/privacidade.html">Privacidade</a>
+                <a href="/termos.html">Termos</a>
+                <a href="mailto:suporte@apphero.com.br">Suporte</a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal()">&times;</span>
+            <h2>Acesse seu Herói</h2>
+            <form onsubmit="event.preventDefault(); redirecionarProApp();">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Seu e-mail" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="senha" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
+            </form>
+            <div class="divider">ou continue com</div>
+            <button onclick="redirecionarProApp()" class="btn btn-google">
+                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
+                Entrar com Google
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>

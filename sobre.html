@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5577107950094628"
+        crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4C1D95">
+    <title>Sobre Nós - RotinaHero</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo"><i class="ph-fill ph-lightning" style="color: var(--dourado);"></i> RotinaHero</div>
+            <div class="nav-links">
+                <a href="/#features">Benefícios</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/#planos">Planos</a>
+            </div>
+            <div class="nav-actions">
+                <button onclick="abrirModal()" class="btn btn-outline">Entrar</button>
+                <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
+                    class="btn btn-primary">Baixar App</a>
+            </div>
+        </nav>
+
+        <section class="seo-content" style="margin-top: 50px;">
+            <h2>Nossa História</h2>
+
+            <h3>Quem Somos</h3>
+            <p>A <strong>AppHero</strong> é uma startup apaixonada por transformar vidas através do poder da tecnologia e do design moderno. Nascemos da crença de que a produtividade não precisa ser dolorosa e de que o potencial humano é ilimitado quando conta com as ferramentas certas. Com uma equipe dedicada de empreendedores, designers e entusiastas do comportamento, trabalhamos para criar soluções que façam a verdadeira diferença.</p>
+
+            <h3>Nossa Missão</h3>
+            <p>Nossa missão com o <strong>RotinaHero</strong> é clara: ajudar pessoas, especialmente aquelas que convivem com o TDAH e enfrentam a procrastinação diária, a recuperarem o controle de suas vidas através da tecnologia. Acreditamos que a tecnologia deve ser uma forte aliada na construção de bons hábitos. Através da <em>gamificação</em> — convertendo rotinas e tarefas chatas na vida real em um empolgante RPG — queremos empoderar você a se tornar o protagonista da sua própria jornada de evolução.</p>
+
+            <h3>O Compromisso com a Ciência da Dopamina</h3>
+            <p>Sabemos muito bem que vencer a procrastinação não é apenas uma questão de "força de vontade", mas sim de química cerebral. É por isso que o RotinaHero foi projetado com um forte compromisso com a ciência da dopamina. O cérebro neurodivergente busca constantemente por novas recompensas e estímulos rápidos. Ao invés de lutar contra essa natureza biológica, nós a abraçamos: desenhamos o sistema de recompensas ideal para o seu cérebro, entregando pequenas vitórias estruturadas, pontos de experiência (XP), e reconhecimento na forma de streaks e upgrades a cada passo positivo efetuado no mundo real.</p>
+        </section>
+
+        <footer>
+            <div>&copy; 2026 AppHero. Vencendo a procrastinação.</div>
+            <div class="footer-links">
+                <a href="/sobre.html">Sobre</a>
+                <a href="/metodologia.html">Metodologia</a>
+                <a href="/privacidade.html">Privacidade</a>
+                <a href="/termos.html">Termos</a>
+                <a href="mailto:suporte@apphero.com.br">Suporte</a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal()">&times;</span>
+            <h2>Acesse seu Herói</h2>
+
+            <form onsubmit="event.preventDefault(); redirecionarProApp();">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Seu e-mail" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="senha" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
+            </form>
+            <div class="divider">ou continue com</div>
+            <button onclick="redirecionarProApp()" class="btn btn-google">
+                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
+                Entrar com Google
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>

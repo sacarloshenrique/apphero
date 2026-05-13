@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5577107950094628"
+        crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4C1D95">
+    <title>Blog - RotinaHero</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .blog-hero {
+            text-align: center;
+            padding: 60px 0 20px 0;
+            color: var(--roxo-escuro);
+        }
+
+        .blog-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .blog-hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .blog-card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-card-link:hover .card {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .ler-mais {
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo"><i class="ph-fill ph-lightning" style="color: var(--dourado);"></i> RotinaHero</div>
+            <div class="nav-links">
+                <a href="/index.html#features">Benefícios</a>
+                <a href="/blog.html" style="color: var(--roxo-hero);">Blog</a>
+                <a href="/index.html#planos">Planos</a>
+            </div>
+            <div class="nav-actions">
+                <button onclick="abrirModal()" class="btn btn-outline">Entrar</button>
+                <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
+                    class="btn btn-primary">Baixar App</a>
+            </div>
+        </nav>
+
+        <section class="blog-hero">
+            <h1>Blog do Herói</h1>
+            <p>Dicas de produtividade, gamificação e neurodiversidade.</p>
+        </section>
+
+        <section class="features" style="padding-top: 0;">
+            <div class="grid-features" id="grid-blog">
+                <p style="text-align: center; width: 100%; color: #666;">Carregando os pergaminhos de conhecimento...
+                </p>
+            </div>
+        </section>
+
+        <footer>
+            <div>&copy; 2026 AppHero. Vencendo a procrastinação.</div>
+            <div class="footer-links">
+                <a href="/sobre.html">Sobre</a>
+                <a href="/metodologia.html">Metodologia</a>
+                <a href="/privacidade.html">Privacidade</a>
+                <a href="/termos.html">Termos</a>
+                <a href="mailto:suporte@apphero.com.br">Suporte</a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal()">&times;</span>
+            <h2>Acesse seu Herói</h2>
+            <form onsubmit="event.preventDefault(); redirecionarProApp();">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Seu e-mail" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="senha" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
+            </form>
+            <div class="divider">ou continue com</div>
+            <button onclick="redirecionarProApp()" class="btn btn-google">
+                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
+                Entrar com Google
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/blog/index.json')
+                .then(response => {
+                    if (!response.ok) throw new Error('Nenhum artigo encontrado');
+                    return response.json();
+                })
+                .then(artigos => {
+                    const grid = document.getElementById('grid-blog');
+
+                    if (!artigos || artigos.length === 0) {
+                        grid.innerHTML = '<p style="text-align: center; width: 100%;">Nenhum artigo publicado ainda.</p>';
+                        return;
+                    }
+
+                    // Array com as tuas classes originais para rotacionar as cores
+                    const estilosCard = ['', 'card-roxo', 'card-dourado'];
+
+                    grid.innerHTML = artigos.map((artigo, index) => {
+                        const dataFormatada = artigo.data ? new Date(artigo.data).toLocaleDateString('pt-BR') : 'Recentemente';
+
+                        // Pega a classe da cor baseado no índice (0, 1, 2, 0, 1, 2...)
+                        const classeCor = estilosCard[index % 3];
+
+                        return `
+                        <a href="${artigo.link}" class="blog-card-link">
+                            <div class="card ${classeCor}">
+                                <i class="ph-fill ph-book-open" style="font-size: 2rem; margin-bottom: 15px; color: inherit;"></i>
+                                <h3 style="margin-bottom: 10px;">${artigo.titulo}</h3>
+                                <p style="font-size: 0.9em; opacity: 0.8; margin-bottom: 15px;">Publicado em ${dataFormatada}</p>
+                                <span class="ler-mais">Ler artigo &rarr;</span>
+                            </div>
+                        </a>
+                        `;
+                    }).join('');
+                })
+                .catch(error => {
+                    console.log("Erro ao carregar os artigos:", error);
+                    document.getElementById('grid-blog').innerHTML = '<p style="text-align: center; width: 100%;">Erro ao carregar os artigos. Volte mais tarde!</p>';
+                });
+        });
+    </script>
+</body>
+
+</html>

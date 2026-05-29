@@ -1,196 +1,681 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5577107950094628"
-        crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5577107950094628"
+    crossorigin="anonymous"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1e1b4b">
+  <meta name="description"
+    content="RotinaHero 2.0 – O app de hábitos gamificado para famílias. Pais lideram a Guilda, filhos ganham XP e Ouro completando missões do dia a dia.">
 
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <title>RotinaHero 2.0 – Gestão de Guildas Familiares | RPG da Vida Real</title>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#4C1D95">
-    <title>RotinaHero - Rotina Gamificada para TDAH e Produtividade</title>
+  <!-- Tailwind CSS v3 CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            'rpg-purple':  '#4C1D95',
+            'rpg-dark':    '#1e1b4b',
+            'rpg-gold':    '#FFC837',
+            'rpg-amber':   '#FF8008',
+            'rpg-emerald': '#10B981',
+          },
+          backgroundImage: {
+            'hero-gradient': 'linear-gradient(135deg, #1e1b4b 0%, #2b1055 50%, #1e1b4b 100%)',
+            'gold-gradient': 'linear-gradient(to right, #FFC837, #FF8008)',
+            'card-gradient': 'linear-gradient(135deg, #2d1b69 0%, #1e1b4b 100%)',
+          },
+          boxShadow: {
+            'rpg': '0 0 0 1px rgba(255,200,55,0.15), 0 20px 40px rgba(0,0,0,0.4)',
+            'rpg-gold': '0 0 20px rgba(255,200,55,0.3), 0 8px 24px rgba(0,0,0,0.3)',
+          },
+          animation: {
+            'float': 'float 3s ease-in-out infinite',
+            'pulse-gold': 'pulseGold 2s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            pulseGold: {
+              '0%, 100%': { boxShadow: '0 0 8px rgba(255,200,55,0.3)' },
+              '50%': { boxShadow: '0 0 24px rgba(255,200,55,0.7)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% center' },
+              '100%': { backgroundPosition: '200% center' },
+            },
+          },
+        },
+      },
+    }
+  </script>
 
-    <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    body { font-family: 'Outfit', sans-serif; }
+
+    /* RPG ornamental border */
+    .rpg-border {
+      position: relative;
+      border: 1px solid rgba(255, 200, 55, 0.2);
+    }
+    .rpg-border::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255,200,55,0.4), transparent 40%, rgba(255,200,55,0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Gold shimmer text */
+    .text-gold-shimmer {
+      background: linear-gradient(90deg, #FFC837, #FF8008, #FFC837, #FF8008);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 2.5s linear infinite;
+    }
+
+    /* Rune background pattern */
+    .rune-bg {
+      background-image: radial-gradient(circle at 25% 25%, rgba(76,29,149,0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 75% 75%, rgba(255,200,55,0.05) 0%, transparent 50%);
+    }
+
+    /* Card hover glow */
+    .card-glow:hover {
+      box-shadow: 0 0 30px rgba(255,200,55,0.15), 0 20px 40px rgba(0,0,0,0.3);
+      transform: translateY(-4px);
+    }
+
+    /* Modal legacy styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+  </style>
 </head>
 
-<body>
-    <div class="container">
-        <nav>
-            <div class="logo"><i class="ph-fill ph-lightning" style="color: var(--dourado);"></i> RotinaHero</div>
-            <div class="nav-links">
-                <a href="#features">Benefícios</a>
-                <a href="/blog.html">Blog</a>
-                <a href="#planos">Planos</a>
-            </div>
-            <div class="nav-actions">
-                <button onclick="abrirModal()" class="btn btn-outline">Entrar</button>
-                <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
-                    class="btn btn-primary">Baixar App</a>
-            </div>
-        </nav>
+<body class="bg-rpg-dark text-white overflow-x-hidden">
 
-        <section class="hero">
-            <div class="hero-text">
-                <span class="hero-tag">RPG DA VIDA REAL</span>
-                <h1 class="hero-title">RotinaHero:<br><span>Rotina Gamificada</span></h1>
-                <p class="hero-desc">Sua jornada épica começa agora. Transforme tarefas chatas em missões, ganhe XP,
-                    suba de nível e evolua seu avatar com o poder da Inteligência Artificial focada em TDAH e
-                    procrastinação.</p>
-                <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
-                    class="btn btn-primary">Missão Cumprida! (Baixar)</a>
-            </div>
-            <div class="hero-img">
-                <div class="hero-card">
-                    <i class="ph-fill ph-shield-check"></i>
-                    <div class="hero-badge">
-                        <i class="ph-fill ph-lightning" style="color: var(--dourado);"></i> STREAK 15 DIAS
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════════ -->
+  <header class="sticky top-0 z-50 border-b border-white/5 bg-rpg-dark/80 backdrop-blur-xl">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-        <section id="features" class="features">
-            <h2>Poderes de Gamificação</h2>
-            <p class="subtitle">Esqueça listas de tarefas chatas. Transformamos sua produtividade diária em uma aventura
-                de RPG emocionante, recompensando seu esforço onde mais importa.</p>
+      <!-- Logo -->
+      <div class="flex items-center gap-2 text-xl font-black tracking-tight">
+        <i class="ph-fill ph-shield-star text-rpg-gold text-2xl"></i>
+        <span class="text-white">Rotina<span class="text-gold-shimmer">Hero</span></span>
+        <span class="text-xs font-bold bg-rpg-gold text-rpg-dark px-2 py-0.5 rounded-full ml-1">2.0</span>
+      </div>
 
-            <div class="grid-features">
-                <div class="card">
-                    <i class="ph-fill ph-user-circle-plus" style="color: var(--roxo-hero);"></i>
-                    <h3>Evolução de Avatar</h3>
-                    <p>Customize seu herói e veja-o crescer conforme você completa suas rotinas reais. Seu progresso no
-                        mundo físico reflete diretamente no digital.</p>
-                </div>
-                <div class="card card-roxo">
-                    <i class="ph-fill ph-fire" style="color: var(--dourado);"></i>
-                    <h3>Streaks Épicas</h3>
-                    <p>Não quebre o ciclo! Ganhe bônus massivos de XP ao manter sua sequência de hábitos saudáveis,
-                        leitura e trabalho por vários dias seguidos.</p>
-                </div>
-                <div class="card card-dourado">
-                    <i class="ph-fill ph-users-three"></i>
-                    <h3>Guildas e Raids</h3>
-                    <p>Junte-se a amigos em guildas para completar desafios em grupo e derrotar a procrastinação juntos.
-                        A responsabilidade compartilhada funciona.</p>
-                </div>
-                <div class="card">
-                    <i class="ph-fill ph-trophy" style="color: var(--roxo-hero);"></i>
-                    <h3>Rankings Globais</h3>
-                    <p>Compare sua disciplina com heróis do mundo todo e suba nas ligas. O algoritmo de Inteligência
-                        Artificial garante uma competição justa.</p>
-                </div>
-            </div>
-        </section>
+      <!-- Links -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-white/70">
+        <a href="#features" class="hover:text-rpg-gold transition-colors">Poderes</a>
+        <a href="/blog.html" class="hover:text-rpg-gold transition-colors">Blog</a>
+        <a href="#planos" class="hover:text-rpg-gold transition-colors">Planos</a>
+      </div>
 
-        <section class="seo-content">
-            <h2>A Ciência por trás do RotinaHero: TDAH e Gamificação</h2>
+      <!-- Actions -->
+      <div class="flex items-center gap-3">
+        <button onclick="abrirModal()"
+          class="hidden sm:block px-4 py-2 text-sm font-semibold text-white/80 hover:text-rpg-gold border border-white/10 rounded-full hover:border-rpg-gold/40 transition-all">
+          Entrar
+        </button>
+        <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
+          class="px-4 py-2 text-sm font-bold bg-gold-gradient text-rpg-dark rounded-full hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-rpg-gold">
+          Baixar App
+        </a>
+      </div>
+    </nav>
+  </header>
 
-            <p>A procrastinação e a dificuldade de manter o foco não são apenas falhas de força de vontade, mas
-                frequentemente estão ligadas à forma como o cérebro processa a dopamina. Para pessoas com Transtorno do
-                Déficit de Atenção com Hiperatividade (TDAH), a execução de tarefas cotidianas pode parecer uma barreira
-                intransponível devido à disfunção executiva.</p>
+  <!-- ═══════════════════════════════════════════
+       HERO SECTION
+  ══════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex items-center overflow-hidden bg-hero-gradient rune-bg">
 
-            <h3>Por que o cérebro com TDAH trava?</h3>
-            <p>O cérebro neurodivergente busca constantemente estímulos de alta recompensa e curto prazo. Tarefas como
-                estudar, arrumar a casa ou preencher relatórios não oferecem esse pico imediato de dopamina, fazendo com
-                que o indivíduo busque distrações mais estimulantes. É aqui que os métodos tradicionais de
-                produtividade, como agendas de papel e planners estáticos, costumam falhar miseravelmente.</p>
+    <!-- Decorative orbs -->
+    <div class="absolute top-20 left-10 w-72 h-72 bg-rpg-purple/30 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-rpg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rpg-purple/10 rounded-full blur-3xl pointer-events-none"></div>
 
-            <h3>A Solução através do RPG da Vida Real</h3>
-            <p>A gamificação transforma obrigações monótonas em um sistema de recompensas visuais e imediatas. Ao
-                utilizar a estrutura do RotinaHero, cada tarefa do mundo físico é convertida em <strong>Pontos de
-                    Experiência (XP)</strong> no mundo digital. Esse ciclo de feedback instantâneo "hackeia" o sistema
-                de recompensa do cérebro, liberando dopamina a cada <i>checkbox</i> marcado.</p>
+    <div class="relative max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center">
 
-            <h3>Sistemas de Streaks e Responsabilidade</h3>
-            <p>Além da recompensa imediata, o uso de <i>Streaks</i> (ofensivas de dias consecutivos) cria um gatilho de
-                aversão à perda. O usuário sente a urgência de completar a rotina para não perder o combo acumulado.
-                Quando adicionamos recursos sociais, como as guildas e a Liga da Família, aplicamos o conceito
-                psicológico de responsabilidade compartilhada (<i>body doubling</i> adaptado), reduzindo a fricção para
-                iniciar tarefas complexas.</p>
-        </section>
-
-        <section id="planos" class="pricing">
-            <h2>Escolha seu Caminho</h2>
-            <p class="subtitle">Comece sua jornada hoje ou prepare-se para desbloquear o poder total da IA na sua
-                rotina.</p>
-
-            <div class="grid-pricing">
-                <div class="price-card">
-                    <h3>Novato</h3>
-                    <div class="price">R$ 0 <span>/ para sempre</span></div>
-                    <ul class="features-list">
-                        <li><i class="ph-bold ph-check"></i> Gestão de Rotinas Diárias</li>
-                        <li><i class="ph-bold ph-check"></i> Evolução de Avatar Básica</li>
-                        <li><i class="ph-bold ph-check"></i> Sistema de Streaks de XP</li>
-                        <li><i class="ph-bold ph-check"></i> Acesso ao Ranking Global</li>
-                    </ul>
-                    <button class="btn btn-primary" style="width: 100%;" onclick="abrirModal()">Plano Atual</button>
-                </div>
-
-                <div class="price-card premium">
-                    <div class="price-tag">EM BREVE</div>
-                    <h3>Herói</h3>
-                    <div class="price">R$ 19,90 <span>/ mês</span></div>
-                    <ul class="features-list">
-                        <li><i class="ph-bold ph-check"></i> <b>Integração Google Agenda</b></li>
-                        <li><i class="ph-bold ph-check"></i> <b>Reagendamento Inteligente com IA</b></li>
-                        <li><i class="ph-bold ph-check"></i> Notificações Push Locais Anti-Mocagem</li>
-                        <li><i class="ph-bold ph-check"></i> Customização Total de Avatar</li>
-                    </ul>
-                    <button class="btn btn-disabled" style="width: 100%;" disabled>Aguarde o Lançamento</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta-bottom">
-            <h2>Sua jornada épica começa agora.</h2>
-            <p>Junte-se a milhares de heróis que decidiram gamificar suas vidas e vencer o boss da procrastinação.</p>
-            <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai" class="btn btn-gold"
-                style="font-size: 1.2rem; padding: 15px 40px;">Começar agora - Grátis</a>
-        </section>
-
-        <footer>
-            <div>&copy; 2026 AppHero. Vencendo a procrastinação.</div>
-            <div class="footer-links">
-                <a href="/sobre.html">Sobre</a>
-                <a href="/metodologia.html">Metodologia</a>
-                <a href="/privacidade.html">Privacidade</a>
-                <a href="/termos.html">Termos</a>
-                <a href="mailto:suporte@apphero.com.br">Suporte</a>
-            </div>
-        </footer>
-    </div>
-
-    <div id="loginModal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-btn" onclick="fecharModal()">&times;</span>
-            <h2>Acesse seu Herói</h2>
-
-            <form onsubmit="event.preventDefault(); redirecionarProApp();">
-                <div class="input-group">
-                    <input type="email" id="email" placeholder="Seu e-mail" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" id="senha" placeholder="Sua senha" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
-            </form>
-            <div class="divider">ou continue com</div>
-            <button onclick="redirecionarProApp()" class="btn btn-google">
-                <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo">
-                Entrar com Google
-            </button>
+      <!-- Text -->
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-rpg-gold/10 border border-rpg-gold/30 rounded-full text-rpg-gold text-xs font-bold uppercase tracking-widest">
+          <i class="ph-fill ph-sword"></i>
+          RPG DA VIDA REAL · v2.0
         </div>
-    </div>
 
-    <script src="script.js" defer></script>
+        <h1 class="text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight">
+          Transforme a Rotina da<br>
+          <span class="text-gold-shimmer">sua Família</span> em uma<br>
+          Aventura Épica.
+        </h1>
+
+        <p class="text-lg lg:text-xl text-white/60 leading-relaxed max-w-xl">
+          O único app de hábitos onde os <strong class="text-white font-semibold">pais são os Líderes da Guilda</strong>
+          e os filhos ganham <span class="text-rpg-gold font-semibold">XP e Ouro</span> ao completar as missões do dia a dia.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4">
+          <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
+            class="flex items-center gap-3 px-6 py-4 bg-gold-gradient text-rpg-dark font-bold text-base rounded-2xl hover:opacity-90 hover:-translate-y-1 transition-all shadow-rpg-gold">
+            <i class="ph-fill ph-google-play-logo text-xl"></i>
+            Baixe agora na Google Play
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
+            class="flex items-center gap-3 px-6 py-4 bg-white/5 border border-white/15 text-white font-bold text-base rounded-2xl hover:bg-white/10 hover:border-rpg-gold/40 hover:-translate-y-1 transition-all">
+            <i class="ph-fill ph-monitor-play text-xl"></i>
+            Jogue no Navegador
+          </a>
+        </div>
+
+        <!-- Social proof -->
+        <div class="flex items-center gap-6 pt-2">
+          <div class="flex -space-x-2">
+            <div class="w-8 h-8 rounded-full bg-rpg-purple border-2 border-rpg-gold/40 flex items-center justify-center text-xs">⚔️</div>
+            <div class="w-8 h-8 rounded-full bg-indigo-800 border-2 border-rpg-gold/40 flex items-center justify-center text-xs">🛡️</div>
+            <div class="w-8 h-8 rounded-full bg-violet-800 border-2 border-rpg-gold/40 flex items-center justify-center text-xs">🏆</div>
+          </div>
+          <p class="text-sm text-white/50">
+            <span class="text-white font-semibold">+5.000 famílias</span> já formaram sua Guilda
+          </p>
+        </div>
+      </div>
+
+      <!-- Hero Visual: Guild Dashboard Card -->
+      <div class="flex justify-center lg:justify-end animate-float">
+        <div class="relative w-full max-w-sm">
+
+          <!-- Main card -->
+          <div class="rpg-border bg-card-gradient rounded-3xl p-6 shadow-rpg space-y-5">
+            <!-- Header -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <i class="ph-fill ph-shield-star text-rpg-gold text-2xl"></i>
+                <div>
+                  <p class="text-xs text-white/40 uppercase tracking-widest">Guilda</p>
+                  <p class="font-black text-white text-sm">Família Silva</p>
+                </div>
+              </div>
+              <span class="text-xs bg-rpg-emerald/20 text-rpg-emerald border border-rpg-emerald/30 px-3 py-1 rounded-full font-semibold">
+                ● Ativa
+              </span>
+            </div>
+
+            <!-- Members -->
+            <div class="space-y-3">
+              <p class="text-xs text-white/40 uppercase tracking-widest font-semibold">Membros da Guilda</p>
+
+              <div class="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3">
+                <div class="flex items-center gap-3">
+                  <span class="text-xl">👑</span>
+                  <div>
+                    <p class="text-sm font-bold">Carlos (Pai)</p>
+                    <p class="text-xs text-white/40">Líder da Guilda</p>
+                  </div>
+                </div>
+                <span class="text-xs text-rpg-gold font-bold">Lv. 42</span>
+              </div>
+
+              <div class="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3">
+                <div class="flex items-center gap-3">
+                  <span class="text-xl">⚔️</span>
+                  <div>
+                    <p class="text-sm font-bold">Lucas (Filho)</p>
+                    <p class="text-xs text-white/40">Guerreiro</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-16 bg-white/10 rounded-full h-1.5">
+                    <div class="bg-rpg-gold h-1.5 rounded-full" style="width: 68%"></div>
+                  </div>
+                  <span class="text-xs text-white/60 font-semibold">680 XP</span>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between bg-white/5 rounded-xl px-4 py-3">
+                <div class="flex items-center gap-3">
+                  <span class="text-xl">🧙‍♀️</span>
+                  <div>
+                    <p class="text-sm font-bold">Ana (Filha)</p>
+                    <p class="text-xs text-white/40">Maga</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-16 bg-white/10 rounded-full h-1.5">
+                    <div class="bg-violet-400 h-1.5 rounded-full" style="width: 45%"></div>
+                  </div>
+                  <span class="text-xs text-white/60 font-semibold">450 XP</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pending approval banner -->
+            <div class="animate-pulse-gold bg-rpg-gold/10 border border-rpg-gold/30 rounded-xl px-4 py-3 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <i class="ph-fill ph-clock text-rpg-gold"></i>
+                <p class="text-xs text-rpg-gold font-semibold">1 tarefa aguardando aprovação</p>
+              </div>
+              <button class="text-xs bg-rpg-gold text-rpg-dark font-bold px-3 py-1 rounded-lg">Aprovar</button>
+            </div>
+          </div>
+
+          <!-- Floating badge: Gold earned -->
+          <div class="absolute -bottom-4 -right-4 bg-rpg-dark border border-rpg-gold/40 rounded-2xl px-4 py-3 shadow-rpg-gold flex items-center gap-2">
+            <span class="text-xl">🪙</span>
+            <div>
+              <p class="text-xs text-white/40">Ouro Ganho</p>
+              <p class="text-sm font-black text-rpg-gold">+250 Gold</p>
+            </div>
+          </div>
+
+          <!-- Floating badge: Streak -->
+          <div class="absolute -top-4 -left-4 bg-rpg-purple border border-rpg-gold/30 rounded-2xl px-4 py-3 shadow-rpg flex items-center gap-2">
+            <i class="ph-fill ph-fire text-rpg-gold text-xl"></i>
+            <div>
+              <p class="text-xs text-white/40">Streak</p>
+              <p class="text-sm font-black text-white">15 dias</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FEATURES SECTION
+  ══════════════════════════════════════════════ -->
+  <section id="features" class="py-28 bg-[#0f0d24] relative overflow-hidden">
+
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(76,29,149,0.2),transparent_60%)] pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6">
+
+      <!-- Section header -->
+      <div class="text-center mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-rpg-gold/10 border border-rpg-gold/30 rounded-full text-rpg-gold text-xs font-bold uppercase tracking-widest">
+          <i class="ph-fill ph-star-four"></i>
+          Poderes da Guilda
+        </div>
+        <h2 class="text-4xl lg:text-5xl font-black text-white">
+          Quatro Artefatos para<br>
+          <span class="text-gold-shimmer">Liderar sua Família</span>
+        </h2>
+        <p class="text-white/50 max-w-xl mx-auto text-lg">
+          Chega de brigar com as crianças para fazer as tarefas. Transforme a rotina em um jogo que toda a família quer jogar.
+        </p>
+      </div>
+
+      <!-- Feature grid -->
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Card 1: Sistema de Guildas -->
+        <div class="rpg-border bg-card-gradient rounded-3xl p-8 card-glow transition-all duration-300 group">
+          <div class="flex items-start gap-5">
+            <div class="flex-shrink-0 w-14 h-14 bg-rpg-purple/50 border border-rpg-gold/20 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              🛡️
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2">
+                <h3 class="text-xl font-black text-white">Sistema de Guildas</h3>
+                <span class="text-[10px] bg-rpg-emerald/20 text-rpg-emerald border border-rpg-emerald/30 px-2 py-0.5 rounded-full font-bold uppercase">Novo</span>
+              </div>
+              <p class="text-white/55 leading-relaxed">
+                Painel de controle parental completo. Os pais gerenciam os membros da família, atribuem missões, fiscalizam a evolução dos filhos e mantêm a ordem no reino — tudo em tempo real.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-xs bg-white/5 border border-white/10 text-white/50 px-3 py-1 rounded-full">Controle Parental</span>
+                <span class="text-xs bg-white/5 border border-white/10 text-white/50 px-3 py-1 rounded-full">Gestão de Equipe</span>
+                <span class="text-xs bg-white/5 border border-white/10 text-white/50 px-3 py-1 rounded-full">Dashboard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Motor de Aprovações -->
+        <div class="rpg-border bg-card-gradient rounded-3xl p-8 card-glow transition-all duration-300 group">
+          <div class="flex items-start gap-5">
+            <div class="flex-shrink-0 w-14 h-14 bg-rpg-purple/50 border border-rpg-gold/20 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              ⚔️
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2">
+                <h3 class="text-xl font-black text-white">Motor de Aprovações</h3>
+                <span class="text-[10px] bg-rpg-gold/20 text-rpg-gold border border-rpg-gold/30 px-2 py-0.5 rounded-full font-bold uppercase">Premium</span>
+              </div>
+              <p class="text-white/55 leading-relaxed">
+                O XP e o Gold <strong class="text-white">só caem na carteira</strong> quando o Líder da Guilda aprova a tarefa concluída. Chega de trapaças: recompensa real para esforço real.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-xs bg-white/5 border border-white/10 text-white/50 px-3 py-1 rounded-full">Anti-fraude</span>
+                <span class="text-xs bg-white/5 border border-white/10 text-white/50 px-3 py-1 rounded-full">XP Verificado</span>
+                <span class="text-xs bg-white/5 border border-white/10 text-white/50 px-3 py-1 rounded-full">Notificação Push</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Forja do Reino -->
+        <div class="rpg-border bg-card-gradient rounded-3xl p-8 card-glow transition-all duration-300 group">
+          <div class="flex items-start gap-5">
+            <div class="flex-shrink-0 w-14 h-14 bg-rpg-purple/50 border border-rpg-gold/20 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              ⚒️
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2">
+                <h3 class="text-xl font-black text-white">Forja do Reino</h3>
+                <span class="text-[10px] bg-rpg-gold/20 text-rpg-gold border border-rpg-gold/30 px-2 py-0.5 rounded-full font-bold uppercase">Premium</span>
+              </div>
+              <p class="text-white/55 leading-relaxed">
+                Lojinha customizável onde os pais criam <strong class="text-white">prêmios do mundo real</strong> para os filhos resgatarem com o Ouro do jogo: uma hora de videogame, sorvete, passeio no parque... você decide o preço.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-xs bg-white/5 border border-white/10 text-white/50 px-3 py-1 rounded-full">Recompensas Reais</span>
+                <span class="text-xs bg-white/5 border border-white/10 text-white/50 px-3 py-1 rounded-full">Loja Custom</span>
+                <span class="text-xs bg-white/5 border border-white/10 text-white/50 px-3 py-1 rounded-full">Gold Economy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Visual Customizável -->
+        <div class="rpg-border bg-card-gradient rounded-3xl p-8 card-glow transition-all duration-300 group">
+          <div class="flex items-start gap-5">
+            <div class="flex-shrink-0 w-14 h-14 bg-rpg-purple/50 border border-rpg-gold/20 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              🎨
+            </div>
+            <div class="space-y-2">
+              <h3 class="text-xl font-black text-white">Visual Customizável</h3>
+              <p class="text-white/55 leading-relaxed">
+                Três temas imersivos para cada estilo de herói. Cada membro da família pode ter uma experiência visual única dentro da mesma guilda.
+              </p>
+              <!-- Theme pills -->
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-xs bg-rpg-gold/15 border border-rpg-gold/30 text-rpg-gold px-3 py-1 rounded-full font-semibold">⚔️ Classic RPG</span>
+                <span class="text-xs bg-slate-800 border border-slate-600 text-slate-300 px-3 py-1 rounded-full font-semibold">🌑 Dark Medieval</span>
+                <span class="text-xs bg-white/10 border border-white/20 text-white px-3 py-1 rounded-full font-semibold">☀️ Light Mode</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SEO CONTENT
+  ══════════════════════════════════════════════ -->
+  <section class="py-20 bg-rpg-dark">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="rpg-border bg-card-gradient rounded-3xl p-10 space-y-6">
+        <h2 class="text-3xl font-black text-white text-center">A Ciência por trás do RotinaHero: TDAH e Gamificação Familiar</h2>
+
+        <p class="text-white/55 leading-relaxed">A procrastinação e a dificuldade de manter o foco não são apenas falhas de força de vontade, mas frequentemente estão ligadas à forma como o cérebro processa a dopamina. Para pessoas com Transtorno do Déficit de Atenção com Hiperatividade (TDAH), a execução de tarefas cotidianas pode parecer uma barreira intransponível devido à disfunção executiva.</p>
+
+        <h3 class="text-xl font-bold text-rpg-gold">Por que o cérebro com TDAH trava?</h3>
+        <p class="text-white/55 leading-relaxed">O cérebro neurodivergente busca constantemente estímulos de alta recompensa e curto prazo. Tarefas como estudar, arrumar a casa ou preencher relatórios não oferecem esse pico imediato de dopamina — é aqui que os métodos tradicionais de produtividade falham miseravelmente.</p>
+
+        <h3 class="text-xl font-bold text-rpg-gold">A Solução: RPG da Vida Real em Família</h3>
+        <p class="text-white/55 leading-relaxed">A gamificação transforma obrigações em recompensas visuais e imediatas. No RotinaHero 2.0, o Sistema de Guildas adiciona a camada de <strong class="text-white">responsabilidade compartilhada</strong> — o filho não quer decepcionar a guilda, o pai acompanha em tempo real, e o Motor de Aprovações garante que cada conquista seja legítima. É <em>body doubling</em> gamificado para toda a família.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PRICING SECTION
+  ══════════════════════════════════════════════ -->
+  <section id="planos" class="py-28 bg-[#0f0d24] relative overflow-hidden">
+
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(76,29,149,0.2),transparent_60%)] pointer-events-none"></div>
+
+    <div class="relative max-w-5xl mx-auto px-6">
+
+      <div class="text-center mb-16 space-y-4">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-rpg-gold/10 border border-rpg-gold/30 rounded-full text-rpg-gold text-xs font-bold uppercase tracking-widest">
+          <i class="ph-fill ph-crown-simple"></i>
+          Escolha seu Caminho
+        </div>
+        <h2 class="text-4xl lg:text-5xl font-black text-white">
+          Planos para cada <span class="text-gold-shimmer">Guilda</span>
+        </h2>
+        <p class="text-white/50 max-w-lg mx-auto">
+          Comece gratuitamente. Desbloqueie o poder total da Guilda quando sua família estiver pronta.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+
+        <!-- Free plan -->
+        <div class="rpg-border bg-card-gradient rounded-3xl p-8 flex flex-col">
+          <div class="space-y-1 mb-6">
+            <p class="text-sm font-bold text-white/40 uppercase tracking-widest">Recrutado</p>
+            <h3 class="text-3xl font-black text-white">Novato</h3>
+            <div class="flex items-end gap-1 pt-1">
+              <span class="text-4xl font-black text-white">R$ 0</span>
+              <span class="text-white/40 mb-1">/ para sempre</span>
+            </div>
+          </div>
+
+          <ul class="space-y-4 flex-1 mb-8">
+            <li class="flex items-center gap-3 text-white/70">
+              <i class="ph-bold ph-check text-rpg-emerald text-lg flex-shrink-0"></i>
+              Gestão de Rotinas Diárias
+            </li>
+            <li class="flex items-center gap-3 text-white/70">
+              <i class="ph-bold ph-check text-rpg-emerald text-lg flex-shrink-0"></i>
+              XP Base por Tarefas
+            </li>
+            <li class="flex items-center gap-3 text-white/70">
+              <i class="ph-bold ph-check text-rpg-emerald text-lg flex-shrink-0"></i>
+              Avatar Fase 1 (Novato)
+            </li>
+            <li class="flex items-center gap-3 text-white/30">
+              <i class="ph-bold ph-x text-white/20 text-lg flex-shrink-0"></i>
+              Sistema de Guildas
+            </li>
+            <li class="flex items-center gap-3 text-white/30">
+              <i class="ph-bold ph-x text-white/20 text-lg flex-shrink-0"></i>
+              Forja do Reino
+            </li>
+          </ul>
+
+          <button onclick="abrirModal()"
+            class="w-full py-3.5 bg-white/10 border border-white/15 text-white font-bold rounded-2xl hover:bg-white/15 transition-all">
+            Começar Grátis
+          </button>
+        </div>
+
+        <!-- Premium plan -->
+        <div class="relative rpg-border bg-gradient-to-br from-rpg-purple to-[#1e1b4b] rounded-3xl p-8 flex flex-col shadow-rpg-gold">
+          <!-- Best badge -->
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold-gradient text-rpg-dark text-xs font-black uppercase tracking-widest px-5 py-1.5 rounded-full whitespace-nowrap">
+            ⚔️ Mais Popular
+          </div>
+
+          <div class="space-y-1 mb-6">
+            <p class="text-sm font-bold text-rpg-gold/70 uppercase tracking-widest">Líder da Guilda</p>
+            <h3 class="text-3xl font-black text-white">Herói</h3>
+            <div class="flex items-end gap-1 pt-1">
+              <span class="text-4xl font-black text-white">R$ 14,90</span>
+              <span class="text-white/40 mb-1">/ mês</span>
+            </div>
+          </div>
+
+          <ul class="space-y-4 flex-1 mb-8">
+            <li class="flex items-center gap-3 text-white/80">
+              <i class="ph-bold ph-check text-rpg-gold text-lg flex-shrink-0"></i>
+              <strong>Sistema de Guildas Familiar</strong>
+            </li>
+            <li class="flex items-center gap-3 text-white/80">
+              <i class="ph-bold ph-check text-rpg-gold text-lg flex-shrink-0"></i>
+              <strong>Motor de Aprovações</strong>
+            </li>
+            <li class="flex items-center gap-3 text-white/80">
+              <i class="ph-bold ph-check text-rpg-gold text-lg flex-shrink-0"></i>
+              <strong>Forja do Reino</strong> (Loja de Prêmios)
+            </li>
+            <li class="flex items-center gap-3 text-white/80">
+              <i class="ph-bold ph-check text-rpg-gold text-lg flex-shrink-0"></i>
+              Evolução Completa de Avatar (4 fases)
+            </li>
+            <li class="flex items-center gap-3 text-white/80">
+              <i class="ph-bold ph-check text-rpg-gold text-lg flex-shrink-0"></i>
+              Multiplicador de XP Dinâmico
+            </li>
+            <li class="flex items-center gap-3 text-white/80">
+              <i class="ph-bold ph-check text-rpg-gold text-lg flex-shrink-0"></i>
+              Notificações Locais Anti-Mocagem
+            </li>
+            <li class="flex items-center gap-3 text-white/80">
+              <i class="ph-bold ph-check text-rpg-gold text-lg flex-shrink-0"></i>
+              Sem anúncios (Ad-free)
+            </li>
+          </ul>
+
+          <button onclick="abrirModal()"
+            class="w-full py-3.5 bg-gold-gradient text-rpg-dark font-black rounded-2xl hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-rpg-gold">
+            Assinar Plano Herói
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CTA BOTTOM
+  ══════════════════════════════════════════════ -->
+  <section class="py-24 bg-rpg-dark">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="rpg-border bg-hero-gradient rounded-3xl p-12 text-center space-y-8 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,200,55,0.05),transparent_70%)] pointer-events-none"></div>
+        <div class="relative space-y-4">
+          <p class="text-rpg-gold font-bold uppercase tracking-widest text-sm">⚔️ A Guilda te espera</p>
+          <h2 class="text-4xl lg:text-5xl font-black text-white leading-tight">
+            Sua família merece uma<br>
+            <span class="text-gold-shimmer">aventura épica.</span>
+          </h2>
+          <p class="text-white/55 text-lg max-w-xl mx-auto">
+            Mais de 5.000 famílias já transformaram a rotina em uma missão. A sua Guilda está esperando.
+          </p>
+        </div>
+        <div class="relative flex flex-wrap justify-center gap-4">
+          <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
+            class="flex items-center gap-3 px-8 py-4 bg-gold-gradient text-rpg-dark font-black text-base rounded-2xl hover:opacity-90 hover:-translate-y-1 transition-all shadow-rpg-gold">
+            <i class="ph-fill ph-google-play-logo text-xl"></i>
+            Baixe agora na Google Play
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.sa.carlos.rotinaai"
+            class="flex items-center gap-3 px-8 py-4 bg-white/5 border border-white/15 text-white font-bold text-base rounded-2xl hover:bg-white/10 hover:-translate-y-1 transition-all">
+            <i class="ph-fill ph-monitor-play text-xl"></i>
+            Jogue no Navegador
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer class="border-t border-white/5 bg-[#0a0818]">
+    <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2 text-white/30 text-sm">
+        <i class="ph-fill ph-shield-star text-rpg-gold/50"></i>
+        <span>&copy; 2026 AppHero. Vencendo a procrastinação.</span>
+      </div>
+      <div class="flex flex-wrap justify-center gap-6 text-sm text-white/30">
+        <a href="/sobre.html" class="hover:text-white transition-colors">Sobre</a>
+        <a href="/metodologia.html" class="hover:text-white transition-colors">Metodologia</a>
+        <a href="/privacidade.html" class="hover:text-white transition-colors">Privacidade</a>
+        <a href="/termos.html" class="hover:text-white transition-colors">Termos</a>
+        <a href="mailto:suporte@apphero.com.br" class="hover:text-white transition-colors">Suporte</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       LOGIN MODAL
+  ══════════════════════════════════════════════ -->
+  <div id="loginModal" class="modal-overlay">
+    <div class="relative bg-[#1a1730] border border-white/10 rounded-3xl p-8 w-full max-w-sm mx-4 text-center shadow-rpg">
+      <button onclick="fecharModal()"
+        class="absolute top-4 right-4 text-white/40 hover:text-white text-2xl leading-none transition-colors">&times;</button>
+
+      <div class="flex items-center justify-center gap-2 mb-6">
+        <i class="ph-fill ph-shield-star text-rpg-gold text-3xl"></i>
+        <h2 class="text-2xl font-black text-white">Acesse seu Herói</h2>
+      </div>
+
+      <form onsubmit="event.preventDefault(); redirecionarProApp();" class="space-y-4">
+        <input type="email" id="email" placeholder="Seu e-mail" required
+          class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-rpg-gold/50 transition-colors">
+        <input type="password" id="senha" placeholder="Sua senha" required
+          class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-rpg-gold/50 transition-colors">
+        <button type="submit"
+          class="w-full py-3.5 bg-gold-gradient text-rpg-dark font-black rounded-xl hover:opacity-90 transition-all">
+          Entrar
+        </button>
+      </form>
+
+      <div class="flex items-center gap-3 my-5">
+        <div class="flex-1 h-px bg-white/10"></div>
+        <span class="text-white/30 text-sm">ou continue com</span>
+        <div class="flex-1 h-px bg-white/10"></div>
+      </div>
+
+      <button onclick="redirecionarProApp()"
+        class="w-full py-3 bg-white text-gray-800 font-semibold rounded-xl flex items-center justify-center gap-3 hover:bg-gray-100 transition-all">
+        <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo" class="w-5 h-5">
+        Entrar com Google
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 
 </html>

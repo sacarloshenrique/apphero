@@ -1,0 +1,179 @@
+/* --- Sistema de Design Global: RotinaHero --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    /* Tema Padrão: Classic RPG (Pergaminho) */
+    --bg-page: #f4edd8;
+    --bg-card: #fdfaf2;
+    --bg-sidebar: #eae0c2;
+    --border-color: #d1b48c;
+    --text-primary: #4a2f13;
+    --text-secondary: #705335;
+    --accent-color: #8b0000;
+    --accent-hover: #b22222;
+    --accent-gold: #c5a059;
+    --accent-success: #2e6f40;
+    --accent-danger: #a62b2b;
+    --shadow: 0 4px 12px rgba(74, 47, 19, 0.08);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --font-title: 'Cinzel', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --sidebar-width: 280px;
+}
+
+/* Tema Sombrio (Dark Mode) */
+[data-theme="dark"] {
+    --bg-page: #0f111a;
+    --bg-card: #181c2b;
+    --bg-sidebar: #131622;
+    --border-color: #2c324c;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --accent-color: #6366f1;
+    --accent-hover: #4f46e5;
+    --accent-gold: #fbbf24;
+    --accent-success: #10b981;
+    --accent-danger: #ef4444;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Tema Claro (Light Mode) */
+[data-theme="light"] {
+    --bg-page: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-sidebar: #f1f5f9;
+    --border-color: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --accent-color: #2563eb;
+    --accent-hover: #1d4ed8;
+    --accent-gold: #eab308;
+    --accent-success: #16a34a;
+    --accent-danger: #dc2626;
+    --shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+/* --- Resets e Estrutura Geral --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    transition: var(--transition);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* --- Cabeçalho Premium --- */
+header {
+    background-color: var(--bg-card);
+    border-bottom: 2px solid var(--border-color);
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-icon {
+    font-size: 2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.logo-text {
+    font-family: var(--font-title);
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+}
+
+.logo-text span {
+    color: var(--accent-gold);
+}
+
+/* Controles do Header */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.theme-selector {
+    background-color: var(--bg-sidebar);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem;
+    border-radius: 12px;
+    display: flex;
+    gap: 0.25rem;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: var(--transition);
+}
+
+.theme-btn.active {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.theme-btn:hover:not(.active) {
+    background-color: rgba(128, 128, 128, 0.1);
+    color: var(--text-primary);
+}
+
+/* --- Rodapé --- */
+footer {
+    background-color: var(--bg-card);
+    border-top: 2px solid var(--border-color);
+    padding: 2rem;
+    text-align: center;
+    margin-top: auto;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.02);
+}
+
+footer span {
+    color: var(--accent-gold);
+    font-weight: bold;
+}
+
+/* --- Animações Compartilhadas --- */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}

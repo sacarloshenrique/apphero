@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central do Herói - Base de Conhecimento RotinaHero</title>
+    <meta name="description" content="Aprenda a dominar o RotinaHero: Gamificação RPG, Criação de rotinas com IA (Oráculo), Controle Parental (Guildas), Mercado do Reino e muito mais.">
+    
+    <!-- CSS Global/Central -->
+    <link rel="stylesheet" href="index.css">
+    
+    <style>
+        /* --- Estilos específicos desta página de Ajuda --- */
+
+        /* Barra de Pesquisa Hero */
+        .hero-search-section {
+            background: linear-gradient(135deg, var(--bg-sidebar), var(--bg-page));
+            padding: 3rem 2rem 2.5rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-search-section h1 {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .hero-search-section p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+        }
+
+        .search-box-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem 1rem 3rem;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            outline: none;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0.6;
+        }
+
+        /* Layout Principal */
+        .main-layout {
+            display: flex;
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Menu de Navegação Lateral */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            padding: 2rem 1rem;
+            position: sticky;
+            top: 85px;
+            height: calc(100vh - 85px);
+            overflow-y: auto;
+            transition: var(--transition);
+        }
+
+        .nav-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-group-title {
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            padding-left: 0.75rem;
+        }
+
+        .nav-list {
+            list-style: none;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.7rem 0.8rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: var(--transition);
+            margin-bottom: 0.2rem;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--bg-card);
+            color: var(--accent-color);
+            box-shadow: var(--shadow);
+            transform: translateX(4px);
+        }
+
+        .nav-link.active {
+            font-weight: 600;
+            border-left: 3px solid var(--accent-color);
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        /* Conteúdo Principal */
+        .content-area {
+            flex: 1;
+            padding: 3rem 4rem;
+            max-width: 900px;
+            transition: var(--transition);
+        }
+
+        /* Seções de Documentação */
+        .doc-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        .doc-section h2 {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .doc-section h3 {
+            font-family: var(--font-title);
+            font-size: 1.3rem;
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        .doc-section p {
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        /* Cards Rápidos */
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quick-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .quick-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: var(--accent-color);
+        }
+
+        .quick-card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-card-title {
+            font-family: var(--font-title);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .quick-card-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Alertas Especiais (Estilo GitHub/Notificação) */
+        .callout {
+            border-left: 4px solid;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            background-color: var(--bg-card);
+            box-shadow: var(--shadow);
+        }
+
+        .callout-info {
+            border-left-color: var(--accent-color);
+        }
+
+        .callout-warning {
+            border-left-color: var(--accent-gold);
+            background-color: rgba(251, 191, 36, 0.05);
+        }
+
+        .callout-danger {
+            border-left-color: var(--accent-danger);
+            background-color: rgba(239, 68, 68, 0.05);
+        }
+
+        .callout-title {
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* Tabelas */
+        .table-responsive {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background-color: var(--bg-card);
+        }
+
+        th {
+            background-color: var(--bg-sidebar);
+            color: var(--text-primary);
+            font-family: var(--font-title);
+            font-weight: 700;
+            padding: 1rem;
+            font-size: 0.95rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Badges de Atributo */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .badge-str { background-color: #d946ef; }
+        .badge-int { background-color: #3b82f6; }
+        .badge-def { background-color: #64748b; }
+        .badge-vit { background-color: #10b981; }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .main-layout {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 1.5rem 1rem;
+            }
+
+            .nav-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .nav-link {
+                margin-bottom: 0;
+            }
+
+            .content-area {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .theme-selector {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon">🛡️</div>
+            <div class="logo-text">Rotina<span>Hero</span></div>
+        </div>
+        <div class="header-controls">
+            <!-- Alternador de Temas -->
+            <div class="theme-selector" id="themeSelector">
+                <button class="theme-btn active" data-theme-val="pergaminho">📜 Pergaminho</button>
+                <button class="theme-btn" data-theme-val="dark">🌑 Escuro</button>
+                <button class="theme-btn" data-theme-val="light">☀️ Claro</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Barra de Pesquisa Hero -->
+    <section class="hero-search-section">
+        <h1>Central de Ajuda & Conhecimento</h1>
+        <p>Explore o grimório do RotinaHero e aprenda a transformar a sua rotina diária em uma lendária jornada medieval de RPG!</p>
+        <div class="search-box-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar mecânicas, poções, guildas familiares...">
+        </div>
+    </section>
+
+    <!-- Layout Principal -->
+    <div class="main-layout">
+        <!-- Navegação Lateral -->
+        <aside class="sidebar">
+            <div class="nav-group">
+                <div class="nav-group-title">Começando</div>
+                <ul class="nav-list">
+                    <li><a href="#proposta" class="nav-link active">🎯 Proposta de Valor</a></li>
+                    <li><a href="#arena" class="nav-link">⚔️ Arena RPG (Gamificação)</a></li>
+                    <li><a href="#oraculo" class="nav-link">🔮 O Oráculo (Rotina com IA)</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <div class="nav-group-title">Mecânicas de Jogo</div>
+                <ul class="nav-list">
+                    <li><a href="#carrasco" class="nav-link">☠️ O Carrasco & Debuffs</a></li>
+                    <li><a href="#mercado" class="nav-link">🏛️ Mercado do Reino</a></li>
+                    <li><a href="#cura" class="nav-link">📽️ Cura Rápida</a></li>
+                </ul>
+            </div>
+            <div class="nav-group">
+                <div class="nav-group-title">Recursos Familiares</div>
+                <ul class="nav-list">
+                    <li><a href="#guildas" class="nav-link">🛡️ Guildas & Controle Parental</a></li>
+                    <li><a href="#premium" class="nav-link">👑 Premium & Assinaturas</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Conteúdo de Documentação -->
+        <main class="content-area">
+            
+            <!-- Proposta de Valor -->
+            <section id="proposta" class="doc-section">
+                <h2>🎯 O que é o RotinaHero?</h2>
+                <p>O <strong>RotinaHero</strong> é um aplicativo de produtividade único, desenhado com mecânicas de gamificação que transformam suas tarefas diárias em uma clássica aventura medieval. A nossa missão é simples: ajudar jovens, adultos e famílias a combater a procrastinação e adotar bons hábitos através da diversão, recompensando obrigações do mundo real com níveis, XP (experiência), atributos e moedas de ouro (Gold).</p>
+                
+                <div class="quick-grid">
+                    <div class="quick-card">
+                        <div class="quick-card-icon">⚔️</div>
+                        <div class="quick-card-title">Suba de Nível</div>
+                        <div class="quick-card-desc">Conclua tarefas reais para ganhar XP e evoluir seu herói.</div>
+                    </div>
+                    <div class="quick-card">
+                        <div class="quick-card-icon">💰</div>
+                        <div class="quick-card-title">Ganhe Ouro</div>
+                        <div class="quick-card-desc">Troque moedas de ouro por recompensas customizadas.</div>
+                    </div>
+                    <div class="quick-card">
+                        <div class="quick-card-icon">🔮</div>
+                        <div class="quick-card-title">IA Lendária</div>
+                        <div class="quick-card-desc">Planeje sua rotina com ajuda do Oráculo da IA.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sistema de Gamificação RPG -->
+            <section id="arena" class="doc-section">
+                <h2>⚔️ O Sistema de Gamificação RPG (Arena)</h2>
+                <p>Dentro da <strong>Arena</strong>, você não está apenas listando afazeres; você está moldando seu herói! O app é estruturado para recompensar cada ação positiva que você realiza ao longo do dia.</p>
+                
+                <h3>Ficha do Herói</h3>
+                <p>Cada jogador possui um perfil exclusivo, que exibe um avatar personalizado por meio de emojis clássicos da fantasia medieval (como magos, guerreiros, dragões e elfos), além de um nível numérico e um título dinâmico baseado em sua evolução (como <em>Novato das Planícies</em> ou <em>Recruta da Ordem</em>).</p>
+
+                <h3>Atributos de Personagem</h3>
+                <p>As tarefas do dia a dia são atreladas a quatro atributos medievais clássicos. Ao concluir uma tarefa, você treina e aumenta aquele aspecto do seu herói:</p>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Atributo</th>
+                                <th>Foco Real</th>
+                                <th>Exemplos Práticos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge badge-str">💪 STR (Força)</span></td>
+                                <td>Atividade física e esportes</td>
+                                <td>Ir à academia, corrida matinal, alongamento.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-int">🧠 INT (Inteligência)</span></td>
+                                <td>Estudos, trabalho e intelecto</td>
+                                <td>Leitura diária, cursos online, praticar idiomas.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-def">🛡️ DEF (Defesa)</span></td>
+                                <td>Organização pessoal e doméstica</td>
+                                <td>Lavar louça, arrumar a cama, limpar o quarto.</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge badge-vit">❤️ VIT (Vitalidade)</span></td>
+                                <td>Bem-estar, saúde física e mental</td>
+                                <td>Beber 2L de água, dormir 8h, meditar.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Daily Streak (Ofensiva)</h3>
+                <p>O aplicativo monitora o seu compromisso contínuo. Ao realizar 100% de todas as tarefas de um dia, a sua <strong>Ofensiva (Daily Streak)</strong> avança. Mantenha a sequência ativa para mostrar o seu verdadeiro valor como herói do reino!</p>
+
+                <div class="callout callout-info">
+                    <div class="callout-title">🔊 Feedback Premium</div>
+                    O RotinaHero conta com efeitos táteis e sonoros dinâmicos (como barulho de moedas tilintando e dados rolando) toda vez que uma ação importante é concluída, ativando neurotransmissores de prazer que combatem diretamente a procrastinação.
+                </div>
+            </section>
+
+            <!-- Criação de Rotina com IA -->
+            <section id="oraculo" class="doc-section">
+                <h2>🔮 O Oráculo (Criação de Rotinas com IA)</h2>
+                <p>Não sabe por onde começar a organizar o seu dia? Use o poder arcano do <strong>Oráculo da IA</strong>, o assistente virtual medieval alimentado pela tecnologia Gemini AI.</p>
+                
+                <h3>A Grande Entrevista</h3>
+                <p>O Oráculo bate um papo amigável em linguagem natural (sem jargões chatos de produtividade), fazendo perguntas simples sobre sua rotina, horários de sono, dinâmica familiar, trabalho e dificuldades comuns. A partir disso, ele calcula e gera uma rotina semanal dinâmica sob medida.</p>
+
+                <h3>Reconhecimento de Voz</h3>
+                <p>Você pode interagir e mandar comandos de voz para o Oráculo. O aplicativo converte sua voz em texto automaticamente para agilizar a inclusão e o ajuste de novas tarefas no seu diário.</p>
+
+                <h3>Níveis de Energia e Economia RPG</h3>
+                <p>Cada tarefa sugerida ou forjada possui um nível de energia/atrito atribuído que determina a sua recompensa ao ser completada:</p>
+                <ul>
+                    <li><strong>Energia Baixa</strong>: Ações simples e rápidas <strong>(+15 XP e Gold)</strong></li>
+                    <li><strong>Energia Média</strong>: Tarefas de esforço moderado <strong>(+25 XP e Gold)</strong></li>
+                    <li><strong>Energia Alta</strong>: Desafios pesados e cansativos <strong>(+40 XP e Gold)</strong></li>
+                </ul>
+            </section>
+
+            <!-- O Carrasco Diário e Debuffs -->
+            <section id="carrasco" class="doc-section">
+                <h2>☠️ Mecânicas de Desafio: O Carrasco Diário</h2>
+                <p>A aventura exige dedicação! Caso o herói ignore suas responsabilidades diárias, ele enfrentará as consequências da inatividade.</p>
+
+                <h3>O Julgamento da Meia-Noite</h3>
+                <p>Diariamente, às <strong>00:01</strong>, o <strong>Carrasco Diário</strong> faz a ronda no reino. Para cada tarefa agendada para o dia anterior que você deixou de concluir, o herói sofre uma penalidade e perde <strong>10 HP (pontos de vida)</strong>.</p>
+
+                <div class="callout callout-warning">
+                    <div class="callout-title">🛡️ Escudos de Defesa</div>
+                    Se você possuir um Escudo de Defesa comprado e equipado a partir da loja, o Carrasco consumirá o escudo e você não receberá nenhum dano naquela rodada de punição (100% de mitigação).
+                </div>
+
+                <h3>O Temido Debuff de Morte</h3>
+                <p>Se seus pontos de vida caírem a zero, seu herói sucumbirá! O personagem receberá um status de <strong>Debuff</strong>. Sob essa penalidade, o herói receberá apenas <strong>metade do XP</strong> habitual de todas as próximas tarefas, até que consiga recuperar todos os seus pontos de vida ou subir de nível.</p>
+            </section>
+
+            <!-- Mercado do Reino -->
+            <section id="mercado" class="doc-section">
+                <h2>🏛️ Mercado do Reino (Lojinha)</h2>
+                <p>Todo o ouro (Gold) conquistado pelo cumprimento da sua rotina pode ser gasto na loja do reino em duas grandes categorias de itens:</p>
+
+                <h3>1. Consumíveis de Jogo</h3>
+                <ul>
+                    <li>🧪 <strong>Poções de HP</strong>: Restauram a barra de vida do seu herói se ele receber dano do Carrasco.</li>
+                    <li>🛡️ <strong>Escudos de Defesa</strong>: Protegem contra perdas de HP se você precisar tirar um dia de folga ou falhar em tarefas.</li>
+                </ul>
+
+                <h3>2. Recompensas Customizadas da Guilda (Familiar)</h3>
+                <p>Se você faz parte de uma Guilda Familiar, os pais e líderes da guilda podem criar recompensas personalizadas do mundo real. Os filhos compram as recompensas utilizando o ouro acumulado em sua jornada de produtividade:</p>
+                <div class="callout callout-info">
+                    <strong>Exemplos de Recompensas:</strong><br>
+                    • 🎮 <em>1 hora de videogame</em> (Custo: 150 Gold)<br>
+                    • 🍕 <em>Noite da Pizza</em> (Custo: 300 Gold)<br>
+                    • 🌳 <em>Passeio no Parque</em> (Custo: 100 Gold)<br>
+                    Ao comprar, é gerada uma solicitação de resgate que precisa de validação e aprovação manual dos pais no painel.
+                </div>
+            </section>
+
+            <!-- Recuperação e Cura Rápida -->
+            <section id="cura" class="doc-section">
+                <h2>📽️ Cura Rápida (Vídeos Premiados)</h2>
+                <p>Seu herói está à beira da morte no calabouço? Existe um caminho rápido para retornar à ativa.</p>
+                <p>Sempre que os pontos de vida (HP) do personagem ficarem em <strong>30% ou menos</strong>, um botão de <strong>Cura Rápida</strong> é liberado. Ao assistir a um anúncio em vídeo curto (Rewarded Ad) de alguns segundos, as feridas do herói cicatrizam e a sua vida retorna instantaneamente para <strong>50%</strong>, removendo o perigo imediato de Debuffs!</p>
+            </section>
+
+            <!-- Guildas e Controle Parental -->
+            <section id="guildas" class="doc-section">
+                <h2>🛡️ Guildas Familiares & Controle Parental</h2>
+                <p>O RotinaHero funciona muito bem sozinho, mas é incrível em família! O <strong>QG Familiar</strong> permite integrar a produtividade da casa inteira em um único sistema cooperativo.</p>
+
+                <h3>Central do Guardião</h3>
+                <p>Líderes familiares (pais ou responsáveis) podem adicionar até <strong>7 dependentes (heróis/filhos)</strong> em sua guilda. A partir da Central do Guardião, os pais ganham acesso a superpoderes administrativos:</p>
+                
+                <ul>
+                    <li>📋 <strong>Forjar Tarefas</strong>: Adicione tarefas diretamente no painel do seu dependente em tempo real.</li>
+                    <li>🔍 <strong>Monitoramento Avançado</strong>: Configure tarefas como <em>Livres</em> ou <em>Monitoradas</em>.</li>
+                    <li>🔑 <strong>Aprovação Manual</strong>: Tarefas configuradas como "Monitoradas" precisam da validação fotográfica ou do check-in manual do Guardião para liberar o ouro e o XP para o herói.</li>
+                    <li>👥 <strong>Modo Supervisor</strong>: Troque com facilidade a tela de visualização entre o controle geral da guilda e o diário individual de cada dependente.</li>
+                </ul>
+            </section>
+
+            <!-- Premium e Assinaturas -->
+            <section id="premium" class="doc-section">
+                <h2>👑 Assinatura Premium</h2>
+                <p>Para famílias que querem extrair o máximo do aplicativo, o plano premium do RotinaHero desbloqueia as portas do castelo.</p>
+
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Recurso</th>
+                                <th>Versão Gratuita</th>
+                                <th>Plano Premium 👑</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ficha do Herói & Arena RPG</td>
+                                <td>Sim</td>
+                                <td>Sim (Ilimitado)</td>
+                            </tr>
+                            <tr>
+                                <td>Criação de Rotina via IA</td>
+                                <td>Básica</td>
+                                <td>Completa (Sem Limite)</td>
+                            </tr>
+                            <tr>
+                                <td>Controle Parental & Guildas</td>
+                                <td>Não</td>
+                                <td><strong>Sim (Até 7 Dependentes)</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Recompensas Customizadas</td>
+                                <td>Não</td>
+                                <td><strong>Sim (Criadas pelos Pais)</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout callout-info">
+                    <div class="callout-title">💳 Integração Segura com Mercado Pago</div>
+                    A ativação do plano premium do RotinaHero (oferecido em assinaturas Mensais ou Anuais) é imediata. A cobrança é feita pelo Mercado Pago e, através de webhooks automáticos, a liberação de recursos na conta do jogador ocorre em poucos segundos após a confirmação de pagamento.
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2026 <span>RotinaHero</span>. Que sua jornada seja lendária e produtiva!</p>
+    </footer>
+
+    <!-- Scripts de Interatividade -->
+    <script>
+        // --- Mecanismo de Alternância de Temas ---
+        const themeSelectorBtn = document.querySelectorAll('#themeSelector .theme-btn');
+        
+        themeSelectorBtn.forEach(btn => {
+            btn.addEventListener('click', () => {
+                themeSelectorBtn.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const selectedTheme = btn.getAttribute('data-theme-val');
+                
+                if (selectedTheme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else if (selectedTheme === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
+            });
+        });
+
+        // --- Navegação Ativa com Scroll (Spy) ---
+        const sections = document.querySelectorAll('.doc-section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // --- Mecanismo de Pesquisa ---
+        const searchInput = document.getElementById('searchInput');
+        
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            
+            sections.forEach(section => {
+                const text = section.innerText.toLowerCase();
+                const isMatch = text.includes(query);
+                
+                if (isMatch) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+            
+            const firstVisibleSection = Array.from(sections).find(s => s.style.display !== 'none');
+            if (firstVisibleSection) {
+                const visibleId = firstVisibleSection.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${visibleId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

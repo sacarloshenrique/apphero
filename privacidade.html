@@ -50,10 +50,38 @@
             font-weight: 700;
         }
 
+        h3 {
+            color: var(--roxo-hero);
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
         p {
             margin-bottom: 15px;
             color: #555;
             text-align: justify;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        li {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        code {
+            background-color: #f0ecf9;
+            color: var(--roxo-escuro);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 0.88em;
+            word-break: break-all;
         }
 
         a.back-btn {
@@ -88,6 +116,20 @@
         <h2>3. Anúncios e Terceiros</h2>
         <p>Utilizamos serviços do Google (AdMob e AdSense) para monetização. Esses serviços podem utilizar cookies para
             exibir anúncios relevantes e personalizados com base na sua navegação.</p>
+
+        <h3>Uso de Dados do Google e Integração com Google Calendar</h3>
+        <p>
+            O RotinaHero acessa os dados de eventos da sua agenda por meio do escopo 
+            <code>https://www.googleapis.com/auth/calendar.events.readonly</code> 
+            com a finalidade exclusiva de leitura e sincronização visual dos seus compromissos diários, 
+            permitindo organizar tarefas e hábitos em horários livres.
+        </p>
+        <ul>
+            <li><strong>Acesso e Finalidade:</strong> Lemos apenas títulos, horários de início e término dos eventos do dia. Não criamos, modificamos ou excluímos eventos.</li>
+            <li><strong>Compartilhamento e Transferência:</strong> Os dados obtidos via Google API não são compartilhados, transferidos, vendidos ou divulgados a terceiros, anunciantes ou redes de publicidade para qualquer finalidade.</li>
+            <li><strong>Proteção e Segurança:</strong> O tráfego de dados é criptografado de ponta a ponta (HTTPS/TLS) e processado em conformidade com as diretrizes da Política de Dados do Usuário dos Serviços de API do Google.</li>
+            <li><strong>Retenção e Exclusão:</strong> Os dados de eventos do Google Calendar não são armazenados de forma persistente em nossos servidores de banco de dados; eles residem em memória/sessão local durante o uso. O usuário pode revogar o acesso a qualquer momento nas configurações do aplicativo ou na página de segurança de sua Conta Google, resultando na exclusão imediata de qualquer token de acesso associado.</li>
+        </ul>
 
         <h2>4. Contato</h2>
         <p>Em caso de dúvidas sobre esta política, entre em contato através do e-mail: suporte@apphero.com.br</p>
